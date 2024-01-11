@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Footer from "@/components/footer/footer";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,6 +23,9 @@ export default function RootLayout({
       ssr: false,
     }
   );
+  const CheckLogin = dynamic(() => import("@/components/etc/check-login"), {
+    ssr: false,
+  });
 
   return (
     <html lang="en">
@@ -31,6 +33,7 @@ export default function RootLayout({
         <main className="max-w-[430px] mx-auto w-full min-h-full bg-[#0e0a5f] z-10 relative flex flex-col">
           {children}
           <CheckStarterPage />
+          <CheckLogin />
           <Footer />
         </main>
       </body>

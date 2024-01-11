@@ -33,6 +33,7 @@ model quiz{
   decrement Int @default(25)
 
   questions question[]
+  quizPlayed  quizPlayed[]
 }
 
 model Account {
@@ -49,7 +50,29 @@ model Account {
   id_token           String?  @db.Text
   session_state      String?
 
-  coins              Int? @default(0)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  image         String?
+  emailVerified DateTime?
+  
+  coins              Int? @default(0)
+  playedQuizId       String?
+
+  playedQuiz         quizPlayed? @relation(fields: [playedQuizId],references: [id])
+  accounts      Account[]
+}
+
+model quizPlayed{
+  id      String @id @default(cuid())
+  quizId  Int
+  score   String
+    
+  quiz    quiz @relation(fields: [quizId],references: [id],onDelete: Cascade)
+  user    User[]
 }

@@ -9,7 +9,7 @@ export const quizRules = [
 ];
 
 export const navLinks = [
-  { icon: BarChart2, link: "/", label: "Contest Rules" },
+  { icon: BarChart2, link: "/rules", label: "Contest Rules" },
   { icon: Coins, link: "/", label: "Coins History" },
   { icon: Book, link: "/", label: "Blogs" },
   { icon: User, link: "/", label: "About Us" },

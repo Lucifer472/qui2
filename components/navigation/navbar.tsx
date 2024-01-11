@@ -1,20 +1,45 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Bell, Menu } from "lucide-react";
 
+import { currentCoins } from "@/actions/coins";
+
 import Sidebar from "@/components/navigation/sidebar";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface NavbarProps {
+  isLogged?: boolean;
+  name?: string | null;
+  image?: string | null;
+}
 
-  let coins: string | number | null = localStorage.getItem("s");
-  if (coins === null) {
-    coins = "0";
-  }
-  coins = parseInt(coins as string);
+const Navbar = ({ isLogged, name, image }: NavbarProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [coins, setCoins] = useState<number>(0);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleCoinsChange = async () => {
+      const userCoins = await currentCoins();
+      if (userCoins === null) {
+        const s = localStorage.getItem("s");
+        if (s === null) return 0;
+        const sCoins = parseInt(s);
+        if (isNaN(sCoins)) return 0;
+        return sCoins;
+      } else {
+        return userCoins;
+      }
+    };
+
+    handleCoinsChange().then((res: number) => {
+      setCoins(res);
+    });
+  }, [pathname]);
 
   return (
     <header className="w-full h-16 flex items-center justify-between bg-gradient-to-b from-[#282d93] to-[#15136e] border-b border-white/30">
@@ -57,7 +82,13 @@ const Navbar = () => {
           <Bell />
         </Link>
       </div>
-      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Sidebar
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        isLogged={isLogged}
+        name={name}
+        image={image}
+      />
     </header>
   );
 };

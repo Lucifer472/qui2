@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 
 import QuestionPanel from "@/components/question/question-panel";
 import GameOver from "./game-over";
+import { getSession } from "next-auth/react";
+import { addCoins, removeCoins } from "@/actions/coins";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,6 +34,8 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
   const [lock, setLock] = useState(false);
 
   const [gameover, setGameOver] = useState(false);
+
+  const [user, setUser] = useState<any>(null);
 
   const router = useRouter();
 
@@ -64,26 +68,45 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
   };
 
   useEffect(() => {
-    const s = localStorage.getItem("s");
-    if (s === null) return router.push("/");
-    const coins = parseInt(s) - 100;
-    if (coins < 0) {
-      return router.push("/");
+    getSession().then((res: any) => {
+      if (res) {
+        if (res.user) {
+          setUser(res.user);
+        }
+      }
+    });
+    if (!user) {
+      const s = localStorage.getItem("s");
+      if (s === null) return router.push("/");
+      const coins = parseInt(s) - 100;
+      if (coins < 0) {
+        return router.push("/");
+      } else {
+        localStorage.setItem("s", coins.toString());
+      }
     } else {
-      localStorage.setItem("s", coins.toString());
+      removeCoins(100).then((res) => {
+        if (!res) router.push("/");
+      });
     }
 
     setTimeout(() => {
       gameEnd();
     }, 59000);
-  });
+  }, []);
 
   const gameEnd = () => {
-    const s = localStorage.getItem("s");
-    if (s === null) return router.push("/");
-    const coins = parseInt(s) + score;
-    localStorage.setItem("s", coins.toString());
-    setGameOver(true);
+    if (!user) {
+      const s = localStorage.getItem("s");
+      if (s === null) return router.push("/");
+      const coins = parseInt(s) + score;
+      localStorage.setItem("s", coins.toString());
+      setGameOver(true);
+    } else {
+      addCoins(100).then((res) => {
+        setGameOver(true);
+      });
+    }
   };
 
   if (gameover)

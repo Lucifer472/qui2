@@ -7,6 +7,7 @@ import Navlinks from "./nav-links";
 
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/constant";
+import { actionLogout } from "@/actions/Logout";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,9 +17,18 @@ const poppins = Poppins({
 interface SidebarProps {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  isLogged?: boolean;
+  name?: string | null;
+  image?: string | null;
 }
 
-const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
+const Sidebar = ({
+  isOpen,
+  setIsOpen,
+  isLogged,
+  name,
+  image,
+}: SidebarProps) => {
   return (
     <div
       className={cn(
@@ -30,24 +40,39 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         <div className="flex gap-x-2 items-center w-full pb-4 pt-8 relative">
           <div className="flex items-center justify-center pl-6">
             <Image
-              src={"/images/male-user-avatar.png"}
+              src={image ? image : "/images/male-user-avatar.png"}
               alt="Avatar"
               width={65}
               height={65}
+              className="rounded-full"
             />
           </div>
           <div className="flex flex-col items-start text-white">
-            <h2 className={cn("leading-4", poppins.className)}>Guest</h2>
+            <h2 className={cn("leading-4", poppins.className)}>
+              {name ? name : "Guest"}
+            </h2>
             <span className="text-xs">Play Quiz & Earn Coins</span>
-            <Link
-              href={"/"}
-              className={cn(
-                "max-w-[80px] min-w-[60px] w-full bg-orange-500 text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
-                poppins.className
-              )}
-            >
-              SIGN IN
-            </Link>
+            {isLogged ? (
+              <button
+                onClick={async () => await actionLogout()}
+                className={cn(
+                  "max-w-[80px] min-w-[60px] w-full bg-orange-500 text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
+                  poppins.className
+                )}
+              >
+                Log Out
+              </button>
+            ) : (
+              <Link
+                href={"/login"}
+                className={cn(
+                  "max-w-[80px] min-w-[60px] w-full bg-orange-500 text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
+                  poppins.className
+                )}
+              >
+                SIGN IN
+              </Link>
+            )}
           </div>
           <div className="absolute top-0 right-0 p-2">
             <X
