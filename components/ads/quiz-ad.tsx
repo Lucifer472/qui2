@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import LoadScript from "@/lib/load-script";

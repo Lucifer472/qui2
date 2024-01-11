@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { getrewardad } from "@/lib/rewardAds";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,6 +47,15 @@ const FirtWinComp = () => {
         )}
       >
         Play Now
+      </button>
+      <button
+        onClick={() => getrewardad(true)}
+        className={cn(
+          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full",
+          poppins.className
+        )}
+      >
+        Watch An Ad
       </button>
     </div>
   );
