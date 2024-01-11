@@ -20,7 +20,7 @@ const starterPage = async () => {
     ssr: false,
   });
 
-  const StarterAdTop = dynamic(() => import("@/components/ads/starter-page"), {
+  const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
     ssr: false,
   });
 

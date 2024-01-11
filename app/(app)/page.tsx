@@ -8,7 +8,7 @@ import QuizTab from "@/components/home/quiz-tab";
 const homePage = async () => {
   const data = await getQuizAll();
 
-  const StarterAdTop = dynamic(() => import("@/components/ads/starter-page"), {
+  const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
     ssr: false,
   });
   const CategoryView = dynamic(

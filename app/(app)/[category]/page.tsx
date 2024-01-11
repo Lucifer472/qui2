@@ -7,7 +7,7 @@ const homePage = async ({ params }: { params: { category: string } }) => {
   const cat = decodeURI(params.category);
   const data = await getQuizbyCat(cat);
 
-  const StarterAdTop = dynamic(() => import("@/components/ads/starter-page"), {
+  const StarterAdTop = dynamic(() => import("@/components/ads/category-ad"), {
     ssr: false,
   });
 

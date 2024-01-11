@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Rules from "@/components/etc/rules";
 
 const SubmitPage = () => {
-  const StarterAdTop = dynamic(() => import("@/components/ads/starter-page"), {
+  const StarterAdTop = dynamic(() => import("@/components/ads/quiz-win"), {
     ssr: false,
   });
   const FirtWinComp = dynamic(() => import("@/components/etc/first-win"), {

@@ -17,7 +17,7 @@ const QuizPage = async ({ params }: { params: { id: string } }) => {
     ssr: false,
   });
 
-  const StarterAdTop = dynamic(() => import("@/components/ads/starter-page"), {
+  const StarterAdTop = dynamic(() => import("@/components/ads/quiz-ad"), {
     ssr: false,
   });
 
