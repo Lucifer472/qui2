@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { getSession } from "next-auth/react";
 import { addCoins } from "@/actions/coins";
 import { Poppins } from "next/font/google";
-import { FadeLoader } from "react-spinners";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -20,7 +19,7 @@ const FirtWinComp = () => {
 
   const [isFirst, setIsFirst] = useState(true);
   const [user, setUser] = useState<any>(null);
-  const [isPending, startTransition] = useTransition();
+  const [btn, setBtn] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -34,49 +33,52 @@ const FirtWinComp = () => {
   }, []);
 
   const handleRewardAds = () => {
-    startTransition(() => {
-      googletag.cmd.push(() => {
-        const rewardedSlot = googletag.defineOutOfPageSlot(
-          "/22850953890/FT_REWARDED",
-          googletag.enums.OutOfPageFormat.REWARDED
-        );
-        if (rewardedSlot === null) return null;
-        rewardedSlot.addService(googletag.pubads());
-        googletag.enableServices();
-        googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
-          evt.makeRewardedVisible();
-        });
-        googletag.pubads().addEventListener("rewardedSlotGranted", () => {
-          if (isFirst) {
-            if (user) {
-              addCoins(100).then(() => {
-                router.push("/");
-              });
-            } else {
-              const s = localStorage.getItem("s");
-              if (s) {
-                const coins = parseInt(s);
-                if (!isNaN(coins)) {
-                  const newAmount = coins + 100;
-                  localStorage.setItem("s", newAmount.toString());
-                  router.push("/");
-                }
+    setBtn(true);
+    googletag.cmd.push(() => {
+      const rewardedSlot = googletag.defineOutOfPageSlot(
+        "/22850953890/FT_REWARDED",
+        googletag.enums.OutOfPageFormat.REWARDED
+      );
+      if (rewardedSlot === null) return null;
+      rewardedSlot.addService(googletag.pubads());
+      googletag.enableServices();
+      googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
+        const isSlotAvail = evt.slot.getResponseInformation();
+        if (isSlotAvail === null) router.push("/submit/home");
+      });
+      googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
+        evt.makeRewardedVisible();
+      });
+      googletag.pubads().addEventListener("rewardedSlotGranted", () => {
+        if (isFirst) {
+          if (user) {
+            addCoins(100).then(() => {
+              router.push("/submit/home");
+            });
+          } else {
+            const s = localStorage.getItem("s");
+            if (s) {
+              const coins = parseInt(s);
+              if (!isNaN(coins)) {
+                const newAmount = coins + 100;
+                localStorage.setItem("s", newAmount.toString());
+                router.push("/submit/home");
               }
             }
           }
-          setIsFirst(false);
-        });
-        googletag.pubads().addEventListener("rewardedSlotClosed", () => {
-          googletag.destroySlots([rewardedSlot]);
-        });
-        googletag.display(rewardedSlot);
+        }
+        setIsFirst(false);
       });
+      googletag.pubads().addEventListener("rewardedSlotClosed", () => {
+        googletag.destroySlots([rewardedSlot]);
+      });
+      googletag.display(rewardedSlot);
     });
   };
 
   const handleClick = () => {
     localStorage.removeItem("a");
-    router.push("/");
+    router.push("/submit/home");
   };
 
   if (localStorage.getItem("a") === null) {
@@ -98,6 +100,20 @@ const FirtWinComp = () => {
         Check out more quizzes to test your skills and keeps grabbing more
         coins!
       </p>
+      <p className="text-center text-[#b6b3ff] font-medium text-lg">
+        Get instant 100 coins! <br />
+        Watch a simple ad and get Rewarded
+      </p>
+      <button
+        onClick={handleRewardAds}
+        disabled={btn}
+        className={cn(
+          "max-w-[300px] w-full max-h-[60px] flex justify-center bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
+          poppins.className
+        )}
+      >
+        Watch an Ads
+      </button>
       <button
         onClick={handleClick}
         className={cn(
@@ -106,32 +122,6 @@ const FirtWinComp = () => {
         )}
       >
         Play Now
-      </button>
-      <button
-        onClick={handleRewardAds}
-        disabled={isPending}
-        className={cn(
-          "max-w-[300px] w-full max-h-[60px] flex justify-center bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
-          poppins.className
-        )}
-      >
-        {isPending ? (
-          <FadeLoader
-            color="#fff"
-            width={5}
-            style={{
-              top: "6px",
-              display: "inherit",
-              position: "relative",
-              fontSize: "0px",
-              left: "20px",
-              width: "60px",
-              height: "60px",
-            }}
-          />
-        ) : (
-          "Watch An Ad"
-        )}
       </button>
     </div>
   );

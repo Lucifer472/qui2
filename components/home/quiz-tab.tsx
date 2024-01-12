@@ -15,15 +15,16 @@ interface QuizTabProps {
   id: number;
   category: string;
   name: string;
+  isHome?: boolean;
 }
 
-const QuizTab = ({ img, id, category, name }: QuizTabProps) => {
+const QuizTab = ({ img, id, category, name, isHome = false }: QuizTabProps) => {
   const randomUserNumber = getRandomNumberOfUser();
   const randomTime = generateRandomTime();
 
   return (
     <Link
-      href={`/${encodeURI(category)}/${id}`}
+      href={isHome ? "/" : `/${encodeURI(category)}/${id}`}
       className="flex flex-col w-full bg-[#1f237e] rounded-md relative"
     >
       <div className="p-3 flex gap-x-2 items-center justify-start">

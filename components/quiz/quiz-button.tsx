@@ -23,6 +23,8 @@ const QuizButtons = ({ id }: { id: number }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [btn, setBtn] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -36,6 +38,7 @@ const QuizButtons = ({ id }: { id: number }) => {
   }, []);
 
   const handleRewardAds = () => {
+    setBtn(true);
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "/22850953890/FT_REWARDED",
@@ -44,11 +47,12 @@ const QuizButtons = ({ id }: { id: number }) => {
       if (rewardedSlot === null) return null;
       rewardedSlot.addService(googletag.pubads());
       googletag.enableServices();
+      googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
+        const isSlotAvail = evt.slot.getResponseInformation();
+        console.log(isSlotAvail);
+      });
       googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
         evt.makeRewardedVisible();
-      });
-      googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
-        console.log(evt.slot.getResponseInformation());
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", () => {
         if (isFirst) {
@@ -117,6 +121,7 @@ const QuizButtons = ({ id }: { id: number }) => {
               </span>
               <button
                 onClick={handleRewardAds}
+                disabled={btn}
                 className={cn(
                   "w-[200px] py-3 bg-orange-500 rounded-full text-white text-xl relative animation-link",
                   poppins.className
@@ -134,6 +139,7 @@ const QuizButtons = ({ id }: { id: number }) => {
       <div className="flex flex-col items-center gap-y-2 max-w-[90%] w-full m-2">
         <button
           onClick={handleRewardAds}
+          disabled={btn}
           className={cn(
             "w-full py-3 bg-orange-500 rounded-lg text-white text-xl relative animation-link",
             poppins.className
