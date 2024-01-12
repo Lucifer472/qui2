@@ -44,7 +44,6 @@ const Quiz = ({ quiz }: quizProps) => {
       setRed(null);
       if (quiz.length - 1 <= currentQuestion) {
         localStorage.setItem("s", score.toString());
-        localStorage.setItem("a", "1");
         router.push("/submit");
       } else {
         setCurrentQuestion((prev) => prev + 1);
@@ -68,7 +67,7 @@ const Quiz = ({ quiz }: quizProps) => {
   } else {
     if (
       localStorage.getItem("s") !== null &&
-      localStorage.getItem("a") === null
+      localStorage.getItem("a") !== null
     ) {
       router.push("/");
     } else if (localStorage.getItem("s") !== null) {

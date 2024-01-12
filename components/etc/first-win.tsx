@@ -71,11 +71,11 @@ const FirtWinComp = () => {
   };
 
   const handleClick = () => {
-    localStorage.removeItem("a");
+    localStorage.setItem("a", "1");
     router.push("/");
   };
 
-  if (localStorage.getItem("a") === null) {
+  if (localStorage.getItem("a")) {
     router.push("/");
   }
   let coins: string | number | null = localStorage.getItem("s");
@@ -97,7 +97,7 @@ const FirtWinComp = () => {
       <button
         onClick={handleClick}
         className={cn(
-          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full animation-link",
+          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
           poppins.className
         )}
       >
@@ -106,7 +106,7 @@ const FirtWinComp = () => {
       <button
         onClick={handleRewardAds}
         className={cn(
-          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full animation-link",
+          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
           poppins.className
         )}
       >
