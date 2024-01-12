@@ -97,7 +97,7 @@ const FirtWinComp = () => {
       <button
         onClick={handleClick}
         className={cn(
-          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full",
+          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full animation-link",
           poppins.className
         )}
       >
@@ -106,7 +106,7 @@ const FirtWinComp = () => {
       <button
         onClick={handleRewardAds}
         className={cn(
-          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full",
+          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full animation-link",
           poppins.className
         )}
       >
