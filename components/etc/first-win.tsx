@@ -71,11 +71,11 @@ const FirtWinComp = () => {
   };
 
   const handleClick = () => {
-    localStorage.setItem("a", "1");
+    localStorage.removeItem("a");
     router.push("/");
   };
 
-  if (localStorage.getItem("a")) {
+  if (localStorage.getItem("a") === null) {
     router.push("/");
   }
   let coins: string | number | null = localStorage.getItem("s");

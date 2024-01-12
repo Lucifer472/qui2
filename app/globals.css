@@ -47,19 +47,18 @@ body::after{
   transform: skewX(-15deg);
   opacity: .6;
   filter: blur(5px);
-  left: -10%;
   top: 1px;
   animation: animation-link-left-right 1.8s ease infinite;
 }
 
 @keyframes animation-link-left-right {
   0%{
-    left: -10%;
+    left: 10%;
     opacity: .6;
   }
   100%{
     left: 90%;
-    opacity: .2;
+    opacity: .4;
   }
 }
 

@@ -7,10 +7,6 @@ export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
-  if (nextUrl.pathname === "/") {
-    return Response.redirect(new URL("/start", nextUrl));
-  }
-
   if (nextUrl.pathname === "/login") {
     if (isLoggedIn) {
       return Response.redirect(new URL("/", nextUrl));
