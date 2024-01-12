@@ -52,7 +52,7 @@ const QuizButtons = ({ id }: { id: number }) => {
           if (user) {
             addCoins(100).then((res) => {
               if (res === null) return console.log("Something Went Wrong");
-              if (res) return console.log("IT WORKS");
+              if (res) return router.refresh();
               return console.log("IT FAILED");
             });
           } else {
@@ -62,6 +62,7 @@ const QuizButtons = ({ id }: { id: number }) => {
               if (!isNaN(coins)) {
                 const newAmount = coins + 100;
                 localStorage.setItem("s", newAmount.toString());
+                router.refresh();
               }
             }
           }

@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
+import { addCoins } from "@/actions/coins";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,6 +27,63 @@ const GameOver = ({
   wrongAnswer,
 }: GameOverProps) => {
   const rank = Math.floor(Math.random() * 20) + 1;
+  window.googletag = window.googletag || { cmd: [] };
+
+  const [isFirst, setIsFirst] = useState(true);
+  const [user, setUser] = useState<any>(null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    getSession().then((res) => {
+      if (res) {
+        if (res.user) {
+          setUser(res.user);
+        }
+      }
+    });
+  }, []);
+
+  const handleRewardAds = () => {
+    googletag.cmd.push(() => {
+      const rewardedSlot = googletag.defineOutOfPageSlot(
+        "/22850953890/FT_REWARDED",
+        googletag.enums.OutOfPageFormat.REWARDED
+      );
+      if (rewardedSlot === null) return null;
+      rewardedSlot.addService(googletag.pubads());
+      googletag.enableServices();
+      googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
+        evt.makeRewardedVisible();
+      });
+      googletag.pubads().addEventListener("rewardedSlotGranted", () => {
+        if (isFirst) {
+          if (user) {
+            addCoins(100).then((res) => {
+              if (res === null) return console.log("Something Went Wrong");
+              if (res) return router.refresh();
+              return console.log("IT FAILED");
+            });
+          } else {
+            const s = localStorage.getItem("s");
+            if (s) {
+              const coins = parseInt(s);
+              if (!isNaN(coins)) {
+                const newAmount = coins + 100;
+                localStorage.setItem("s", newAmount.toString());
+                router.refresh();
+              }
+            }
+          }
+        }
+        setIsFirst(false);
+      });
+      googletag.pubads().addEventListener("rewardedSlotClosed", () => {
+        googletag.destroySlots([rewardedSlot]);
+      });
+      googletag.display(rewardedSlot);
+    });
+  };
 
   return (
     <div className="flex flex-col items-center w-full gap-y-4 px-4">
@@ -88,7 +149,7 @@ const GameOver = ({
           Join Quiz
         </Link>
         <button
-          // onClick={() => router.push("/rules")}
+          onClick={handleRewardAds}
           className={cn(
             "w-full py-3 bg-[#1f237e] rounded-lg text-white text-lg relative animation-link",
             poppins.className
