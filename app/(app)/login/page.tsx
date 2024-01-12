@@ -16,7 +16,7 @@ const LoginPage = () => {
     ssr: false,
   });
   return (
-    <>
+    <div className="flex flex-col items-center w-full">
       <form
         action={async () => {
           "use server";
@@ -49,7 +49,7 @@ const LoginPage = () => {
         </p>
       </form>
       <StarterAdTop />
-    </>
+    </div>
   );
 };
 

@@ -39,6 +39,8 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
     handleCoinsChange().then((res: number) => {
       setCoins(res);
     });
+
+    setIsOpen(false);
   }, [pathname]);
 
   return (

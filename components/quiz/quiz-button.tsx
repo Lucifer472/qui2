@@ -47,6 +47,9 @@ const QuizButtons = ({ id }: { id: number }) => {
       googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
         evt.makeRewardedVisible();
       });
+      googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
+        console.log(evt.slot.getResponseInformation());
+      });
       googletag.pubads().addEventListener("rewardedSlotGranted", () => {
         if (isFirst) {
           if (user) {
