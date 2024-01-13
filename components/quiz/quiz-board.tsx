@@ -68,27 +68,31 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
   };
 
   useEffect(() => {
-    getSession().then((res: any) => {
-      if (res) {
-        if (res.user) {
-          setUser(res.user);
+    const setNewUser = async () => {
+      const user = await getSession();
+      if (user === null) return null;
+      setUser(user);
+      return user;
+    };
+
+    setNewUser().then((res) => {
+      if (!res) {
+        const s = sessionStorage.getItem("s");
+        if (s === null) return router.push("/");
+        const coins = parseInt(s) - 100;
+        if (coins < 0) {
+          // return router.push("/");
+          console.log("RE CHECKED");
+        } else {
+          sessionStorage.setItem("s", coins.toString());
         }
+      } else {
+        removeCoins(100).then((res) => {
+          // if (!res) router.push("/");
+          console.log("RE CHECKED");
+        });
       }
     });
-    if (!user) {
-      const s = sessionStorage.getItem("s");
-      if (s === null) return router.push("/");
-      const coins = parseInt(s) - 100;
-      if (coins < 0) {
-        return router.push("/");
-      } else {
-        sessionStorage.setItem("s", coins.toString());
-      }
-    } else {
-      removeCoins(100).then((res) => {
-        if (!res) router.push("/");
-      });
-    }
 
     setTimeout(() => {
       gameEnd();

@@ -46,7 +46,7 @@ const QuestionPanel = ({
             variant={"outline"}
             disabled={lock}
             className={cn(
-              "text-black",
+              "text-black disabled:opacity-100",
               green === index + 1 ? "bg-green-400 hover:bg-green-400" : "",
               red === index + 1 ? "bg-red-400 hover:bg-red-400" : ""
             )}

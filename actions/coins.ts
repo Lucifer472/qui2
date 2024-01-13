@@ -26,7 +26,7 @@ export const removeCoins = async (removeCoins: number) => {
     return null;
   const coins = await getCoins(user.user.email);
   if (coins === null) return null;
-  if (coins > removeCoins) {
+  if (coins >= removeCoins) {
     const newCoins = coins - removeCoins;
 
     const isUpdated = await setCoins(user.user.email, newCoins);
