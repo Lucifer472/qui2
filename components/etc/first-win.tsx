@@ -76,11 +76,6 @@ const FirtWinComp = () => {
     });
   };
 
-  const handleClick = () => {
-    sessionStorage.removeItem("a");
-    router.push("/submit/home");
-  };
-
   if (sessionStorage.getItem("a") === null) {
     router.push("/");
   }
@@ -109,15 +104,6 @@ const FirtWinComp = () => {
         disabled={btn}
         className={cn(
           "max-w-[300px] w-full max-h-[60px] flex justify-center bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
-          poppins.className
-        )}
-      >
-        Watch an Ads
-      </button>
-      <button
-        onClick={handleClick}
-        className={cn(
-          "max-w-[300px] w-full bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
           poppins.className
         )}
       >
