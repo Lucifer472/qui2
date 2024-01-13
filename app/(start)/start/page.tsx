@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 
 import Rules from "@/components/etc/rules";
-import FunFact from "@/components/etc/fun-fact";
 
 import { getStarterQuestion } from "@/lib/getQuestion";
 import { handleFirst } from "@/actions/cookies";
@@ -37,7 +36,6 @@ const starterPage = async () => {
         </p>
       </div>
       <Quiz quiz={data} />
-      <FunFact />
       <Rules />
     </div>
   );
