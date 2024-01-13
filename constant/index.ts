@@ -32,6 +32,7 @@ export const category: string[] = [
 
 export const categoryIcons: { [key: string]: string } = {
   "Health Quiz": "monument.png",
+  "Car Quiz": "auto.png",
   "Fun Time": "grammar.png",
   "Bike Quiz": "famous.png",
   "Banking Quiz": "sports.png",

@@ -3,6 +3,11 @@ import db from "./db";
 export const getQuizAll = async () => {
   const data = await db.quiz.findMany({
     take: 18,
+    where: {
+      NOT: {
+        category: "Starter",
+      },
+    },
   });
   return data;
 };
