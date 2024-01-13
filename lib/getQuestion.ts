@@ -2,6 +2,9 @@ import db from "@/lib/db";
 
 export const getStarterQuestion = async () => {
   const data = await db.question.findManyRandom(2, {
+    where: {
+      quizId: 10,
+    },
     select: {
       id: true,
       question: true,
