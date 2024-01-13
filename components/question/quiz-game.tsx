@@ -42,9 +42,9 @@ const Quiz = ({ quiz }: quizProps) => {
       setGreen(null);
       setRed(null);
       if (quiz.length - 1 <= currentQuestion) {
+        sessionStorage.setItem("s", score.toString());
+        sessionStorage.setItem("a", "1");
         handleFirst().then((res) => {
-          sessionStorage.setItem("s", score.toString());
-          sessionStorage.setItem("a", "1");
           router.push("/submit");
         });
       } else {
