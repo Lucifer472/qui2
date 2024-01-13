@@ -87,7 +87,7 @@ const QuizButtons = ({ id }: { id: number }) => {
     if (user) {
       currentCoins().then((res) => {
         if (res) {
-          if (res > 99) return router.push("/start/" + id);
+          if (res > 99) return router.push("/submit/" + id);
           else return router.push("/start");
         }
         return router.push("/start");
@@ -98,7 +98,7 @@ const QuizButtons = ({ id }: { id: number }) => {
       const coins = parseInt(s);
 
       if (isNaN(coins)) return router.push("/start");
-      if (coins > 99) return router.push(`/start/${id}`);
+      if (coins > 99) return router.push(`/submit/${id}`);
       return setIsOpen(true);
     }
   };
