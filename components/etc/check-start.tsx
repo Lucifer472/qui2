@@ -1,10 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
 import LoadScript from "@/lib/load-script";
+import LoadServiceWorker from "@/lib/serviceWorker";
 
 const CheckStarterPage = () => {
   useEffect(() => {
+    const serviceWorker = LoadServiceWorker();
+    if (serviceWorker) {
+      console.log("IT WOKRS");
+    }
+
     const loadScript = async () => {
       LoadScript(() => {
         console.log("Script Loaded");

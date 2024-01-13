@@ -19,20 +19,25 @@ export const navLinks = [
 
 export const category: string[] = [
   "All",
-  "Health Reform",
-  "Test Your Car IQ",
-  "Test Your Bike IQ",
-  "Banking",
+  "Health Quiz",
+  "Car Quiz",
+  "Bike Quiz",
+  "Banking Quiz",
+  "Finance Quiz",
   "Fun Time",
-  "Indian Finance",
+  "Festival Quiz",
+  "Bollywood Quiz",
+  "Hollywood Quiz",
 ];
 
 export const categoryIcons: { [key: string]: string } = {
-  "Health Reform": "monument.png",
-  Banking: "grammar.png",
-  "Test Your Car IQ": "famous.png",
-  "Test Your Bike IQ": "sports.png",
-  "Fun Time": "science.png",
+  "Health Quiz": "monument.png",
+  "Fun Time": "grammar.png",
+  "Bike Quiz": "famous.png",
+  "Banking Quiz": "sports.png",
+  "Finance Quiz": "science.png",
   "Indian Finance": "brand.png",
-  Festival: "festival-min.png",
+  "Festival Quiz": "festival-min.png",
+  "Bollywood Quiz": "trivia-min.png",
+  "Hollywood Quiz": "vocab.png",
 };
