@@ -31,6 +31,7 @@ const GameOver = ({
 
   const [isFirst, setIsFirst] = useState(true);
   const [user, setUser] = useState<any>(null);
+  const [btn, setBtn] = useState(false);
 
   const router = useRouter();
 
@@ -45,6 +46,7 @@ const GameOver = ({
   }, []);
 
   const handleRewardAds = () => {
+    setBtn(true);
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "/22850953890/FT_REWARDED",
@@ -53,6 +55,9 @@ const GameOver = ({
       if (rewardedSlot === null) return null;
       rewardedSlot.addService(googletag.pubads());
       googletag.enableServices();
+      googletag.pubads().addEventListener("slotOnload", (evt) => {
+        if (evt.slot.getResponseInformation() === null) return router.push("/");
+      });
       googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
         evt.makeRewardedVisible();
       });
@@ -60,9 +65,9 @@ const GameOver = ({
         if (isFirst) {
           if (user) {
             addCoins(100).then((res) => {
-              if (res === null) return console.log("Something Went Wrong");
-              if (res) return router.refresh();
-              return console.log("IT FAILED");
+              if (res === null) return router.push("/");
+              if (res) return router.push("/");
+              return router.push("/");
             });
           } else {
             const s = localStorage.getItem("s");
@@ -71,7 +76,7 @@ const GameOver = ({
               if (!isNaN(coins)) {
                 const newAmount = coins + 100;
                 localStorage.setItem("s", newAmount.toString());
-                router.refresh();
+                router.push("/");
               }
             }
           }
@@ -149,6 +154,7 @@ const GameOver = ({
           Join Quiz
         </Link>
         <button
+          disabled={btn}
           onClick={handleRewardAds}
           className={cn(
             "w-full py-3 bg-[#1f237e] rounded-lg text-white text-lg relative animation-link",
