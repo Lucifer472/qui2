@@ -70,12 +70,12 @@ const GameOver = ({
               return router.push("/");
             });
           } else {
-            const s = localStorage.getItem("s");
+            const s = sessionStorage.getItem("s");
             if (s) {
               const coins = parseInt(s);
               if (!isNaN(coins)) {
                 const newAmount = coins + 100;
-                localStorage.setItem("s", newAmount.toString());
+                sessionStorage.setItem("s", newAmount.toString());
                 router.push("/");
               }
             }

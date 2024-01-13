@@ -63,12 +63,12 @@ const QuizButtons = ({ id }: { id: number }) => {
               return console.log("IT FAILED");
             });
           } else {
-            const s = localStorage.getItem("s");
+            const s = sessionStorage.getItem("s");
             if (s) {
               const coins = parseInt(s);
               if (!isNaN(coins)) {
                 const newAmount = coins + 100;
-                localStorage.setItem("s", newAmount.toString());
+                sessionStorage.setItem("s", newAmount.toString());
                 router.refresh();
               }
             }
@@ -93,7 +93,7 @@ const QuizButtons = ({ id }: { id: number }) => {
         return router.push("/start");
       });
     } else {
-      const s = localStorage.getItem("s");
+      const s = sessionStorage.getItem("s");
       if (s === null) return router.push("/start");
       const coins = parseInt(s);
 

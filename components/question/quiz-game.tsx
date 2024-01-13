@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-import QuestionPanel from "@/components/question/question-panel";
+import { useState } from "react";
 
 import { question } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { getSession } from "next-auth/react";
+
+import { handleFirst } from "@/actions/cookies";
+
+import QuestionPanel from "@/components/question/question-panel";
 
 interface quizProps {
   quiz: question[];
@@ -15,8 +16,6 @@ interface quizProps {
 const Quiz = ({ quiz }: quizProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-
-  const [user, setUser] = useState<any>(null);
 
   const [green, setGreen] = useState<null | number>(null);
   const [red, setRed] = useState<null | number>(null);
@@ -43,9 +42,11 @@ const Quiz = ({ quiz }: quizProps) => {
       setGreen(null);
       setRed(null);
       if (quiz.length - 1 <= currentQuestion) {
-        localStorage.setItem("s", score.toString());
-        localStorage.setItem("a", "1");
-        router.push("/submit");
+        handleFirst().then((res) => {
+          sessionStorage.setItem("s", score.toString());
+          sessionStorage.setItem("a", "1");
+          router.push("/submit");
+        });
       } else {
         setCurrentQuestion((prev) => prev + 1);
       }
@@ -53,28 +54,14 @@ const Quiz = ({ quiz }: quizProps) => {
     }, 1000);
   };
 
-  useEffect(() => {
-    getSession().then((res) => {
-      if (res) {
-        if (res.user) {
-          setUser(res.user);
-        }
-      }
-    });
-  }, []);
-
-  if (user) {
-    router.push("/");
-  } else {
-    if (
-      localStorage.getItem("s") !== null &&
-      localStorage.getItem("a") === null
-    ) {
-      router.push("/");
-    } else if (localStorage.getItem("s") !== null) {
-      router.push("/submit");
-    }
-  }
+  // if (
+  //   sessionStorage.getItem("s") !== null &&
+  //   sessionStorage.getItem("a") === null
+  // ) {
+  //   router.push("/");
+  // } else if (sessionStorage.getItem("s") !== null) {
+  //   router.push("/submit");
+  // }
   return (
     <QuestionPanel
       question={quiz[currentQuestion].question}

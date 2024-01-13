@@ -76,13 +76,13 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
       }
     });
     if (!user) {
-      const s = localStorage.getItem("s");
+      const s = sessionStorage.getItem("s");
       if (s === null) return router.push("/");
       const coins = parseInt(s) - 100;
       if (coins < 0) {
         return router.push("/");
       } else {
-        localStorage.setItem("s", coins.toString());
+        sessionStorage.setItem("s", coins.toString());
       }
     } else {
       removeCoins(100).then((res) => {
@@ -97,10 +97,10 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
 
   const gameEnd = () => {
     if (!user) {
-      const s = localStorage.getItem("s");
+      const s = sessionStorage.getItem("s");
       if (s === null) return router.push("/");
       const coins = parseInt(s) + score;
-      localStorage.setItem("s", coins.toString());
+      sessionStorage.setItem("s", coins.toString());
       setGameOver(true);
     } else {
       addCoins(100).then((res) => {

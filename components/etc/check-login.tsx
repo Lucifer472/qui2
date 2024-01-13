@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const CheckLogin = () => {
   useEffect(() => {
     const updateCoins = async () => {
-      const s = localStorage.getItem("s");
+      const s = sessionStorage.getItem("s");
       if (s === null) return;
       const coins = parseInt(s);
       if (isNaN(coins)) return;

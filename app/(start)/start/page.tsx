@@ -7,6 +7,7 @@ import Rules from "@/components/etc/rules";
 import FunFact from "@/components/etc/fun-fact";
 
 import { getStarterQuestion } from "@/lib/getQuestion";
+import { handleFirst } from "@/actions/cookies";
 
 const poppins = Poppins({
   subsets: ["latin"],

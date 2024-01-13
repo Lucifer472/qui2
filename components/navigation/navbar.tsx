@@ -26,7 +26,7 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
     const handleCoinsChange = async () => {
       const userCoins = await currentCoins();
       if (userCoins === null) {
-        const s = localStorage.getItem("s");
+        const s = sessionStorage.getItem("s");
         if (s === null) return 0;
         const sCoins = parseInt(s);
         if (isNaN(sCoins)) return 0;

@@ -32,9 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <CheckStarterPage />
         <main className="max-w-[430px] mx-auto w-full min-h-full bg-[#0e0a5f] z-10 relative flex flex-col">
           {children}
-          <CheckStarterPage />
           <CheckLogin />
           <Footer />
         </main>

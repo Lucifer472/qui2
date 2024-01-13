@@ -1,6 +1,9 @@
 import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
@@ -13,8 +16,22 @@ export default auth((req) => {
     }
     return null;
   }
+
   return null;
 });
+
+export function middleware(request: NextRequest) {
+  const cookie = request.cookies.get("isFirst");
+  if (!cookie && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/start", request.url));
+  }
+
+  if (cookie && request.nextUrl.pathname === "/start") {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  return null;
+}
 
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],

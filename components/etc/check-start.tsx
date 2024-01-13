@@ -1,15 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import LoadScript from "@/lib/load-script";
 
 const CheckStarterPage = () => {
-  const router = useRouter();
-
-  const [user, setUser] = useState<any>(null);
-
   useEffect(() => {
     const loadScript = async () => {
       LoadScript(() => {
@@ -59,21 +53,6 @@ const CheckStarterPage = () => {
     });
   }, []);
 
-  useEffect(() => {
-    getSession().then((res) => {
-      if (res) {
-        if (res.user) {
-          setUser(res.user);
-        }
-      }
-    });
-  }, []);
-
-  if (!user) {
-    if (localStorage.getItem("s") === null) {
-      router.push("/start");
-    }
-  }
   return <></>;
 };
 
