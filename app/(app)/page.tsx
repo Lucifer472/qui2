@@ -20,10 +20,10 @@ const homePage = async () => {
 
   if (data.length < 0) return null;
   return (
-    <div className="flex flex-col items-center justify-center gap-y-6 w-full">
+    <div className="flex flex-col items-center justify-center gap-y-2 w-full">
       <StarterAdTop />
       <CategoryView />
-      <div className="flex flex-col w-full gap-y-2 px-4 py-2">
+      <div className="flex flex-col w-full gap-y-2 px-2">
         {data.map((d, index) => (
           <QuizTab
             key={index}

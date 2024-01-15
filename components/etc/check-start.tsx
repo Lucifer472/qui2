@@ -1,17 +1,30 @@
 "use client";
 
 import { useEffect } from "react";
+import { getMessaging, onMessage } from "firebase/messaging";
 
+import firebaseApp from "@/lib/firebase";
 import LoadScript from "@/lib/load-script";
-import LoadServiceWorker from "@/lib/serviceWorker";
+
+import useFcmToken from "@/hooks/useFcmToken";
 
 const CheckStarterPage = () => {
-  useEffect(() => {
-    const serviceWorker = LoadServiceWorker();
-    if (serviceWorker) {
-      console.log("IT WOKRS");
-    }
+  const { fcmToken, notificationPermissionStatus } = useFcmToken();
 
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/firebase-messaging-sw.js").then(
+        function (registration) {
+          console.log(
+            "Service Worker registered with scope:",
+            registration.scope
+          );
+        },
+        function (err) {
+          console.log("Service Worker registration failed:", err);
+        }
+      );
+    }
     const loadScript = async () => {
       LoadScript(() => {
         console.log("Script Loaded");
@@ -58,6 +71,18 @@ const CheckStarterPage = () => {
 
       document.head.appendChild(script);
     });
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      const messaging = getMessaging(firebaseApp);
+      const unsubscribe = onMessage(messaging, (payload) => {
+        console.log("Foreground push notification received:", payload);
+      });
+      return () => {
+        unsubscribe(); // Unsubscribe from the onMessage event
+      };
+    }
   }, []);
 
   return <></>;

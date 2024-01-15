@@ -87,15 +87,15 @@ const FirtWinComp = () => {
 
   return (
     <div className="flex flex-col items-center gap-y-2 p-2 bg-[#1f237e] rounded-lg">
-      <Image src={"/gif/rewards.gif"} alt="Reward" width={180} height={180} />
-      <span className="text-center text-white text-2xl font-medium">
+      <Image src={"/gif/rewards.gif"} alt="Reward" width={100} height={100} />
+      <span className="text-center text-white text-lg font-medium">
         You have got {coins} coins
       </span>
-      <p className="text-center text-[#b6b3ff] font-medium text-lg">
+      <p className="text-center text-[#b6b3ff] font-medium text-sm">
         Check out more quizzes to test your skills and keeps grabbing more
         coins!
       </p>
-      <p className="text-center text-[#b6b3ff] font-medium text-lg">
+      <p className="text-center text-[#b6b3ff] font-medium text-xs">
         Get instant 100 coins! <br />
         Watch a simple ad and get Rewarded
       </p>

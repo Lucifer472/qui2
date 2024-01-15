@@ -2,8 +2,6 @@ import { Poppins } from "next/font/google";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-
-import { category, categoryIcons } from "@/constant";
 import { cn } from "@/lib/utils";
 
 const poppins = Poppins({

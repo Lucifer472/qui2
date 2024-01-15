@@ -22,6 +22,10 @@ const QuizGamePage = async ({ params }: { params: { id: string } }) => {
     ssr: false,
   });
 
+  const Rules = dynamic(() => import("@/components/etc/rules"), {
+    ssr: false,
+  });
+
   const data = await getAllQuestion(params.id);
 
   if (data === null) return;
@@ -40,6 +44,7 @@ const QuizGamePage = async ({ params }: { params: { id: string } }) => {
       </span>
       <QuizBoard data={data} />
       <StarterAdTop />
+      <Rules />
     </div>
   );
 };

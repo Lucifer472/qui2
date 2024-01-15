@@ -10,7 +10,7 @@ const CategoryView = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center justify-start gap-x-2 w-full px-2 py-4 overflow-x-scroll">
+    <div className="flex items-center justify-start gap-x-2 w-full px-2 py-2 overflow-x-scroll">
       {category.map((c, index) => (
         <Link
           key={index}

@@ -76,3 +76,12 @@ model quizPlayed{
   quiz    quiz @relation(fields: [quizId],references: [id],onDelete: Cascade)
   user    User[]
 }
+
+model FcmTokens {
+  id String @id @default(cuid())
+
+  userId String @unique
+  token String @db.Text 
+
+  expiresAt DateTime
+}

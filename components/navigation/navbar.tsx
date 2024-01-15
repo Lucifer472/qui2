@@ -80,9 +80,12 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
             <span>Coins</span>
           </div>
         </Link>
-        <Link href={"/"} className="p-2 rounded-full bg-[#080456] text-white">
+        <button
+          onClick={async () => await Notification.requestPermission()}
+          className="p-2 rounded-full bg-[#080456] text-white"
+        >
           <Bell />
-        </Link>
+        </button>
       </div>
       <Sidebar
         isOpen={isOpen}
