@@ -3,7 +3,8 @@ import { BarChart2, Book, BookUser, Coins, Flag, User } from "lucide-react";
 export const quizRules = [
   "Get coins on the completion of each quiz.",
   "Upgrade your skills with our top quizzes.",
-  "We have many top trending categories like Cricket, World, India, Business, loan, insurance & many more!",
+  "We have many top trending categories like:-",
+  "Cricket, World, India, Business, loan, insurance & many more!",
   "Millions of quiz admirer like you showed trust on us.",
   "Challenge lakhs of players from across the world!",
 ];
