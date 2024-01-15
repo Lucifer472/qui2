@@ -24,13 +24,27 @@ firebase.initializeApp(firebaseConfig);
 // Retrieve firebase messaging
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function (payload) {
-  console.log("Received background message ", payload);
-  // Customize notification here
-  const notificationTitle = payload.notification.title;
+messaging.setBackgroundMessageHandler(function (payload) {
+  const notificationTitle = payload.notification.title; //or payload.notification or whatever your payload is
   const notificationOptions = {
     body: payload.notification.body,
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
+
+  self.addEventListener("notificationclick", function (event) {
+    event.notification.close(); // Close the notification
+
+    // Open the URL specified in the FCM options
+    event.waitUntil(
+      clients.openWindow(event.notification.data.fcmOptions.link)
+    );
+  });
+});
+
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close(); // Close the notification
+
+  // Open the URL specified in the FCM options
+  event.waitUntil(clients.openWindow(event.notification.data.fcmOptions.link));
 });

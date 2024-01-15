@@ -3,10 +3,9 @@ import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
 
-import Rules from "@/components/etc/rules";
-
 import { getStarterQuestion } from "@/lib/getQuestion";
-import { handleFirst } from "@/actions/cookies";
+
+import { Box, Skeleton } from "@mui/material";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,10 +17,54 @@ const starterPage = async () => {
 
   const Quiz = dynamic(() => import("@/components/question/quiz-game"), {
     ssr: false,
+    loading: () => (
+      <Box sx={{ width: 398, height: 172 }}>
+        <Skeleton
+          variant="rectangular"
+          width={398}
+          height={172}
+          animation="wave"
+          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
+        />
+      </Box>
+    ),
   });
 
   const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
     ssr: false,
+    loading: () => (
+      <Box sx={{ width: 336, height: 304 }}>
+        <Skeleton
+          variant="rectangular"
+          width={336}
+          height={304}
+          animation="wave"
+          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
+        />
+      </Box>
+    ),
+  });
+
+  const Rules = dynamic(() => import("@/components/etc/rules"), {
+    ssr: false,
+    loading: () => (
+      <Box sx={{ width: 398, height: 760 }}>
+        <Skeleton
+          variant="rectangular"
+          width={366}
+          height={340}
+          animation="wave"
+          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
+        />
+        <Skeleton
+          variant="rectangular"
+          width={366}
+          height={396}
+          animation="wave"
+          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
+        />
+      </Box>
+    ),
   });
 
   return (

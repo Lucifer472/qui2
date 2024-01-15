@@ -78,6 +78,16 @@ const CheckStarterPage = () => {
       const messaging = getMessaging(firebaseApp);
       const unsubscribe = onMessage(messaging, (payload) => {
         console.log("Foreground push notification received:", payload);
+        // @ts-ignore
+        const c = new Notification(payload.notification.title, {
+          // @ts-ignore
+          body: payload.notification.body,
+        });
+
+        c.addEventListener("click", () => {
+          // @ts-ignore
+          window.open(payload.fcmOptions?.link);
+        });
       });
       return () => {
         unsubscribe(); // Unsubscribe from the onMessage event
