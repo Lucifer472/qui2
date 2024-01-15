@@ -13,8 +13,6 @@ const poppins = Poppins({
 });
 
 const starterPage = async () => {
-  const data = await getStarterQuestion();
-
   const Quiz = dynamic(() => import("@/components/question/quiz-game"), {
     ssr: false,
     loading: () => (
@@ -66,6 +64,8 @@ const starterPage = async () => {
       </Box>
     ),
   });
+
+  const data = await getStarterQuestion();
 
   return (
     <div className="flex items-center flex-col gap-y-4 h-full w-full py-2 px-4">
