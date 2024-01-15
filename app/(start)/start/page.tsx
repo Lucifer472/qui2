@@ -28,23 +28,7 @@ const starterPage = async () => {
     ),
   });
 
-  const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
-    ssr: false,
-    loading: () => (
-      <Box sx={{ width: 336, height: 304 }}>
-        <Skeleton
-          variant="rectangular"
-          width={336}
-          height={304}
-          animation="wave"
-          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
-        />
-      </Box>
-    ),
-  });
-
   const Rules = dynamic(() => import("@/components/etc/rules"), {
-    ssr: false,
     loading: () => (
       <Box sx={{ width: 398, height: 760 }}>
         <Skeleton
@@ -58,6 +42,21 @@ const starterPage = async () => {
           variant="rectangular"
           width={366}
           height={396}
+          animation="wave"
+          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
+        />
+      </Box>
+    ),
+  });
+
+  const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
+    ssr: false,
+    loading: () => (
+      <Box sx={{ width: 336, height: 304 }}>
+        <Skeleton
+          variant="rectangular"
+          width={336}
+          height={304}
           animation="wave"
           sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
         />
