@@ -24,7 +24,10 @@ const SubmitHomePage = () => {
         className="flex flex-col w-full bg-[#1f237e] rounded-md relative"
       >
         <div className="p-3 flex gap-x-2 items-center justify-evenly">
-          <div className="flex flex-col items-center gap-y-1">
+          <Link
+            href={"/quiz/" + 5}
+            className="flex flex-col items-center gap-y-1"
+          >
             <span className="text-white">Fun Quiz</span>
             <Image
               src={`/icons/science.png`}
@@ -33,8 +36,11 @@ const SubmitHomePage = () => {
               height={100}
               className="rounded-md"
             />
-          </div>
-          <div className="flex flex-col items-center gap-y-1">
+          </Link>
+          <Link
+            href={"/quiz/" + 1}
+            className="flex flex-col items-center gap-y-1"
+          >
             <span className="text-white">Math Quiz</span>
             <Image
               src={`/icons/math.png`}
@@ -43,8 +49,11 @@ const SubmitHomePage = () => {
               height={100}
               className="rounded-md"
             />
-          </div>
-          <div className="flex flex-col items-center gap-y-1">
+          </Link>
+          <Link
+            href={"/quiz/" + 2}
+            className="flex flex-col items-center gap-y-1"
+          >
             <span className="text-white">Car Quiz</span>
             <Image
               src={`/icons/auto.png`}
@@ -53,7 +62,7 @@ const SubmitHomePage = () => {
               height={100}
               className="rounded-md"
             />
-          </div>
+          </Link>
         </div>
         <div className="w-full h-[1px] bg-gray-300" />
         <div className="px-4 py-2 flex items-center justify-between w-full">

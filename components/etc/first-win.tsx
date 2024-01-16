@@ -87,16 +87,12 @@ const FirtWinComp = () => {
   coins = parseInt(coins as string);
 
   return (
-    <div className="flex flex-col items-center gap-y-2 p-2 bg-[#1f237e] rounded-lg">
-      <Image src={"/gif/rewards.gif"} alt="Reward" width={100} height={100} />
+    <div className="flex flex-col items-center gap-y-2 p-2 bg-[#1f237e] rounded-lg min-w-[90%]">
+      <Image src={"/gif/rewards.gif"} alt="Reward" width={180} height={180} />
       <span className="text-center text-white text-lg font-medium">
         You have got {coins} coins
       </span>
-      <p className="text-center text-[#b6b3ff] font-medium text-sm">
-        Check out more quizzes to test your skills and keeps grabbing more
-        coins!
-      </p>
-      <p className="text-center text-[#b6b3ff] font-medium text-xs">
+      <p className="text-center text-[#b6b3ff] font-medium ">
         Get instant 100 coins! <br />
         Watch a simple ad and get Rewarded
       </p>
@@ -104,11 +100,16 @@ const FirtWinComp = () => {
         onClick={handleRewardAds}
         disabled={btn}
         className={cn(
-          "max-w-[300px] w-full max-h-[60px] flex justify-center bg-orange-500 text-white text-2xl font-semibold text-center py-4 rounded-full relative animation-link",
+          "max-w-[300px] w-full min-h-[60px] relative",
           poppins.className
         )}
       >
-        Play Now
+        <Image
+          src={"/claim-button.png"}
+          alt="Claim Now"
+          fill
+          style={{ objectFit: "contain" }}
+        />
       </button>
     </div>
   );

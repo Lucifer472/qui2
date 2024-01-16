@@ -25,7 +25,7 @@ const AudioPlayer = () => {
   }, [isPlaying]);
 
   return (
-    <div className="flex justify-end w-full text-white px-4 py-2">
+    <div className="flex justify-end w-full text-white py-2 col-span-1">
       <audio src="/Quiz.wav" className="hidden" id="audio"></audio>
       {isPlaying ? (
         <Volume1 className="w-8 h-8" onClick={() => setIsPlaying(true)} />

@@ -64,10 +64,10 @@ const starterPage = async () => {
     ),
   });
 
-  const data = await getStarterQuestion(); 
+  const data = await getStarterQuestion();
 
   return (
-    <div className="flex items-center flex-col gap-y-4 h-full w-full py-2 px-4">
+    <div className="flex items-center flex-col gap-y-2 h-full w-full py-2 px-4">
       <StarterAdTop />
       <div className="text-center text-white my-2">
         <h1 className={cn("text-white text-2xl mb-2", poppins.className)}>

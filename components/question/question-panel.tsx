@@ -34,7 +34,7 @@ const QuestionPanel = ({
   const options = [opt1, opt2, opt3, opt4];
 
   return (
-    <div className="relative w-full flex flex-col text-center px-2 py-4 gap-y-4 bg-[#282d93] text-white rounded-md">
+    <div className="relative w-full flex flex-col text-center p-2 gap-y-4 bg-[#282d93] text-white rounded-md">
       <span className={cn("text-xl text-center", poppins.className)}>
         {question}
       </span>

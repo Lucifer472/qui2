@@ -124,7 +124,7 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
     );
 
   return (
-    <div className="px-4 my-12 relative flex flex-col w-full">
+    <div className="px-4 my-8 relative flex flex-col w-full">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[180%] w-[82px] h-[82px] z-20 border-[4px] border-[#282d93] rounded-full flex items-center justify-center">
         <CountdownCircleTimer
           isPlaying
