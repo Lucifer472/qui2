@@ -71,6 +71,7 @@ const FirtWinComp = () => {
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", () => {
         googletag.destroySlots([rewardedSlot]);
+        router.push("/submit/home");
       });
       googletag.display(rewardedSlot);
     });

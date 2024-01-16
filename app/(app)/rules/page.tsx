@@ -1,5 +1,7 @@
-import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import { Poppins } from "next/font/google";
+
+import { cn } from "@/lib/utils";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -7,8 +9,12 @@ const poppins = Poppins({
 });
 
 const RulePage = () => {
+  const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
+    ssr: false,
+  });
   return (
     <div className="flex flex-col gap-y-2 items-center w-full p-6">
+      <StarterAdTop />
       <h1 className={cn("text-2xl text-white", poppins.className)}>
         Contest Rules!
       </h1>

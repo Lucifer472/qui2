@@ -6,8 +6,6 @@ import { getQuizAll } from "@/lib/getQuiz";
 import QuizTab from "@/components/home/quiz-tab";
 
 const homePage = async () => {
-  const data = await getQuizAll();
-
   const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
     ssr: false,
   });
@@ -17,6 +15,7 @@ const homePage = async () => {
       ssr: false,
     }
   );
+  const data = await getQuizAll();
 
   if (data.length < 0) return null;
   return (
