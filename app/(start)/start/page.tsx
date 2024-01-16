@@ -64,7 +64,7 @@ const starterPage = async () => {
     ),
   });
 
-  const data = await getStarterQuestion();
+  const data = await getStarterQuestion(); 
 
   return (
     <div className="flex items-center flex-col gap-y-4 h-full w-full py-2 px-4">
