@@ -14,6 +14,7 @@ const LoadScript = (callback: () => void) => {
     script.setAttribute("data-ad-frequency-hint", "30s");
     script.async = true;
     document.body.appendChild(script);
+    script.defer = true;
     script.onload = () => {
       if (callback) callback();
     };

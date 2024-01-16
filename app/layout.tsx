@@ -4,8 +4,6 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-import Footer from "@/components/footer/footer";
-import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -30,10 +28,13 @@ export default function RootLayout({
     ssr: false,
   });
 
+  const Footer = dynamic(() => import("@/components/footer/footer"), {
+    ssr: true,
+  });
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Script src="/firebase-messaging-sw.js" strategy="worker" />
         <CheckStarterPage />
         <main className="max-w-[430px] mx-auto w-full min-h-full bg-[#0e0a5f] z-10 relative flex flex-col">
           {children}
