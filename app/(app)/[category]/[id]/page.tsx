@@ -32,8 +32,10 @@ const QuizPage = async ({ params }: { params: { id: string } }) => {
   if (data === null) return redirect("/");
 
   return (
-    <div className="flex flex-col items-center w-full gap-y-4">
-      <div className="bg-[#1f237e] flex flex-col items-center w-full max-w-[90%] gap-y-2 rounded-lg m-4 p-4">
+    <div className="flex flex-col items-center w-full gap-y-2">
+      <StarterAdTop />
+      <QuizButtons id={data.id} />
+      <div className="bg-[#1f237e] flex flex-col items-center w-full max-w-[90%] gap-y-2 rounded-lg p-4">
         <Image
           src={`/icons/${categoryIcons[data.category]}`}
           alt="Auto"
@@ -64,8 +66,6 @@ const QuizPage = async ({ params }: { params: { id: string } }) => {
           Join and save the coins you win! Its free & safe!
         </p>
       </div>
-      <QuizButtons id={data.id} />
-      <StarterAdTop />
       <BottomButtons />
     </div>
   );
