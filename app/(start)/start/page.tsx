@@ -7,6 +7,8 @@ import { getStarterQuestion } from "@/lib/getQuestion";
 
 import { Box, Skeleton } from "@mui/material";
 
+import Loader from "@/components/etc/loader";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["500"],
@@ -83,6 +85,7 @@ const starterPage = async () => {
 
   return (
     <div className="flex items-center flex-col gap-y-2 h-full relative w-full py-2 px-4">
+      <Loader />
       <PopAds />
       <StarterAdTop />
       <div className="text-center text-white my-2">

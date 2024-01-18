@@ -31,7 +31,6 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
           if (!evt.isEmpty) {
             console.log(evt.isEmpty);
-            setIsOpen(false);
           } else {
             console.log("false");
           }
