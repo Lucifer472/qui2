@@ -12,10 +12,6 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   window.googletag = window.googletag || { cmd: [] };
 
   useEffect(() => {
-    if (pathname === "/start") {
-      setIsOpen(true);
-    }
-
     let sl: googletag.Slot | null;
     const loadAds = async () => {
       LoadScript(() => {
@@ -34,7 +30,7 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         googletag.enableServices();
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
           if (evt.isEmpty) {
-            setIsOpen(false);
+            console.log(evt.isEmpty);
           } else {
             setLoading1(false);
           }
