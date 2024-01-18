@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import LoadScript from "@/lib/load-script";
+import { cn } from "@/lib/utils";
 
 const PopTopAd = () => {
   const pathname = usePathname();
@@ -52,7 +53,7 @@ const PopTopAd = () => {
       <div
         id="div-gpt-ad-1704975698484-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-        className={loading1 ? "block" : "hidden"}
+        className={cn(loading1 ? "block" : "hidden")}
       ></div>
     </>
   );
