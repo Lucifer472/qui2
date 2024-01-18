@@ -5,9 +5,9 @@ import { ClipLoader } from "react-spinners";
 const Loader = () => {
   const [loader, setLoader] = useState(true);
 
-  setTimeout(() => {
-    setLoader(false);
-  }, 5000);
+  // setTimeout(() => {
+  //   setLoader(false);
+  // }, 5000);
 
   return (
     <>

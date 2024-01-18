@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const PopTopAd = () => {
   const pathname = usePathname();
-  const [loading1, setLoading1] = useState(true);
+  const [loading1, setLoading1] = useState(false);
 
   window.googletag = window.googletag || { cmd: [] };
 
@@ -14,7 +14,7 @@ const PopTopAd = () => {
     let sl: googletag.Slot | null;
     const loadAds = async () => {
       LoadScript(() => {
-        console.log("Script Loaded");
+        return;
       });
     };
     loadAds().then(() => {
@@ -28,11 +28,8 @@ const PopTopAd = () => {
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
         googletag.pubads().addEventListener("slotRequested", (evt) => {
-          if (evt.slot.getResponseInformation()) {
-            console.log(evt.slot.getResponseInformation());
-          } else {
-            console.log(evt.slot.getResponseInformation());
-            setLoading1(false);
+          if (!evt.slot.getResponseInformation()) {
+            setLoading1(true);
           }
         });
         googletag.display("div-gpt-ad-1704975698484-0");
@@ -45,7 +42,7 @@ const PopTopAd = () => {
           googletag.destroySlots([sl as googletag.Slot]);
         });
       }
-      setLoading1(false);
+      setLoading1(true);
     };
   }, [pathname, setLoading1]);
 
@@ -54,7 +51,7 @@ const PopTopAd = () => {
       <div
         id="div-gpt-ad-1704975698484-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-        className={cn(loading1 ? "hidden" : "block")}
+        className={cn("", loading1 ? "hidden" : "block")}
       ></div>
     </>
   );
