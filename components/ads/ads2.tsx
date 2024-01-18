@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import LoadScript from "@/lib/load-script";
-import { cn } from "@/lib/utils";
 
-const PopTopAd = () => {
+const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   const pathname = usePathname();
-  const [loading1, setLoading1] = useState(false);
 
   window.googletag = window.googletag || { cmd: [] };
 
@@ -29,7 +27,9 @@ const PopTopAd = () => {
         googletag.enableServices();
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
           if (evt.slot === sl && evt.isEmpty) {
-            setLoading1(true);
+            setIsOpen(false);
+          } else {
+            setIsOpen(true);
           }
         });
         googletag.display("div-gpt-ad-1704975698484-0");
@@ -42,16 +42,14 @@ const PopTopAd = () => {
           googletag.destroySlots([sl as googletag.Slot]);
         });
       }
-      setLoading1(true);
     };
-  }, [pathname, setLoading1]);
+  }, [pathname, setIsOpen]);
 
   return (
     <>
       <div
         id="div-gpt-ad-1704975698484-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-        className={cn("", loading1 ? "hidden" : "block")}
       ></div>
     </>
   );

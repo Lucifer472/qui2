@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { handleFirst } from "@/actions/cookies";
 
 import QuestionPanel from "@/components/question/question-panel";
+import dynamic from "next/dynamic";
 
 interface quizProps {
   quiz: question[];
@@ -53,18 +54,26 @@ const Quiz = ({ quiz }: quizProps) => {
       setLock(false);
     }, 1000);
   };
+
+  const PopAds = dynamic(() => import("@/components/ads/pop-ad"), {
+    ssr: false,
+  });
+
   return (
-    <QuestionPanel
-      question={quiz[currentQuestion].question}
-      opt1={quiz[currentQuestion].option1}
-      opt2={quiz[currentQuestion].option2}
-      opt3={quiz[currentQuestion].option3}
-      opt4={quiz[currentQuestion].option4}
-      handleAnswerSelect={handleAnswerSelection}
-      green={green}
-      red={red}
-      lock={lock}
-    />
+    <>
+      {currentQuestion === 1 && <PopAds />}
+      <QuestionPanel
+        question={quiz[currentQuestion].question}
+        opt1={quiz[currentQuestion].option1}
+        opt2={quiz[currentQuestion].option2}
+        opt3={quiz[currentQuestion].option3}
+        opt4={quiz[currentQuestion].option4}
+        handleAnswerSelect={handleAnswerSelection}
+        green={green}
+        red={red}
+        lock={lock}
+      />
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 import { X } from "lucide-react";
 
-const PopAds = () => {
+const TopPopAd2 = () => {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ const PopAds = () => {
     }
   }, [pathname]);
 
-  const Ads1 = dynamic(() => import("./ads1"), {
+  const Ads1 = dynamic(() => import("./ads2"), {
     ssr: false,
   });
 
@@ -45,4 +45,4 @@ const PopAds = () => {
   );
 };
 
-export default PopAds;
+export default TopPopAd2;
