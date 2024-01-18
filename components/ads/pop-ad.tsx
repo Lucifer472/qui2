@@ -45,7 +45,7 @@ const PopAds = () => {
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
-          if (!evt.isEmpty) {
+          if (evt.isEmpty) {
             setIsOpen(false);
           } else {
             setLoading1(false);
@@ -85,23 +85,25 @@ const PopAds = () => {
               <X />
               <span>Close Ad</span>
             </button>
-            {loading1 ? (
-              <ClipLoader
-                color="#0e0a5f"
-                size={60}
-                cssOverride={{ borderWidth: "10px" }}
-              />
-            ) : (
+            <div className="flex items-center justify-center flex-col w-full h-full">
+              {loading1 ? (
+                <ClipLoader
+                  color="#0e0a5f"
+                  size={60}
+                  cssOverride={{ borderWidth: "10px" }}
+                />
+              ) : (
+                <div
+                  id="div-gpt-ad-1704975698484-0"
+                  style={{ minWidth: "336px", minHeight: "280px" }}
+                ></div>
+              )}
+              <div className="my-2"></div>
               <div
-                id="div-gpt-ad-1704975698484-0"
+                id="div-gpt-ad-1704975923390-0"
                 style={{ minWidth: "336px", minHeight: "280px" }}
               ></div>
-            )}
-            <div className="my-2"></div>
-            <div
-              id="div-gpt-ad-1704975923390-0"
-              style={{ minWidth: "336px", minHeight: "280px" }}
-            ></div>
+            </div>
           </div>
         )}
       </div>
