@@ -53,15 +53,6 @@ const Quiz = ({ quiz }: quizProps) => {
       setLock(false);
     }, 1000);
   };
-
-  // if (
-  //   sessionStorage.getItem("s") !== null &&
-  //   sessionStorage.getItem("a") === null
-  // ) {
-  //   router.push("/");
-  // } else if (sessionStorage.getItem("s") !== null) {
-  //   router.push("/submit");
-  // }
   return (
     <QuestionPanel
       question={quiz[currentQuestion].question}
