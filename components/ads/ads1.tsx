@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import { ClipLoader } from "react-spinners";
@@ -30,6 +30,7 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         googletag.display("div-gpt-ad-1704975923390-0");
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
           if (evt.isEmpty) {
+            console.log(evt.isEmpty);
             setIsOpen(false);
           }
         });

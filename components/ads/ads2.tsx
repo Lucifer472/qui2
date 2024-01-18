@@ -31,6 +31,7 @@ const PopTopAd = () => {
           if (evt.slot.getResponseInformation()) {
             console.log(evt.slot.getResponseInformation());
           } else {
+            console.log(evt.slot.getResponseInformation());
             setLoading1(false);
           }
         });

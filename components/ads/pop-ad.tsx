@@ -1,14 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+import { ClipLoader } from "react-spinners";
 
 import { X } from "lucide-react";
-import dynamic from "next/dynamic";
 
 const PopAds = () => {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     if (pathname === "/start") {
@@ -26,6 +28,15 @@ const PopAds = () => {
 
   return (
     <>
+      {loader && (
+        <div className="absolute w-full h-full flex items-center justify-center">
+          <ClipLoader
+            color="#0e0a5f"
+            size={60}
+            cssOverride={{ borderWidth: "10px" }}
+          />
+        </div>
+      )}
       {isOpen && (
         <div className="absolute w-full h-full bg-black opacity-40 z-50" />
       )}
