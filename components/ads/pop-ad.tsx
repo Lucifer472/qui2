@@ -31,9 +31,9 @@ const PopAds = () => {
     loadAds().then(() => {
       googletag.cmd.push(function () {
         sl = googletag.defineSlot(
-          "/22989534981/QDG_5_336X280",
+          "/22850953890/FT_2",
           [336, 280],
-          "div-gpt-ad-1705382679779-0"
+          "div-gpt-ad-1704975698484-0"
         );
         sl2 = googletag.defineSlot(
           "/22850953890/FT_9",
@@ -51,7 +51,7 @@ const PopAds = () => {
             setLoading1(false);
           }
         });
-        googletag.display("div-gpt-ad-1705382679779-0");
+        googletag.display("div-gpt-ad-1704975698484-0");
         googletag.display("div-gpt-ad-1704975923390-0");
       });
     });
@@ -93,7 +93,7 @@ const PopAds = () => {
               />
             ) : (
               <div
-                id="div-gpt-ad-1705382679779-0"
+                id="div-gpt-ad-1704975698484-0"
                 style={{ minWidth: "336px", minHeight: "280px" }}
               ></div>
             )}
