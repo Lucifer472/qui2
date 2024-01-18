@@ -45,7 +45,6 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
           googletag.destroySlots([sl as googletag.Slot]);
         });
       }
-      setIsOpen(false);
     };
   }, [pathname]);
 
