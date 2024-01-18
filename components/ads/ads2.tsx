@@ -49,12 +49,11 @@ const PopTopAd = () => {
 
   return (
     <>
-      {loading1 && (
-        <div
-          id="div-gpt-ad-1704975698484-0"
-          style={{ minWidth: "336px", minHeight: "280px" }}
-        ></div>
-      )}
+      <div
+        id="div-gpt-ad-1704975698484-0"
+        style={{ minWidth: "336px", minHeight: "280px" }}
+        className={loading1 ? "block" : "hidden"}
+      ></div>
     </>
   );
 };
