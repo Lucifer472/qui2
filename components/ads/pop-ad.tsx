@@ -13,7 +13,7 @@ const PopAds = () => {
   window.googletag = window.googletag || { cmd: [] };
 
   useEffect(() => {
-    if (pathname === "/") {
+    if (pathname === "/start") {
       setIsOpen(true);
     }
 
@@ -60,28 +60,33 @@ const PopAds = () => {
     };
   }, [pathname]);
   return (
-    <div className="flex flex-col items-center w-full absolute top-[50px] md:top-1/4">
+    <>
       {isOpen && (
-        <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white">
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"
-          >
-            <X />
-            <span className="">Close Ad</span>
-          </button>
-          <div
-            id="div-gpt-ad-1705382679779-0"
-            style={{ minWidth: "336px", minHeight: "280px" }}
-          ></div>
-          <div className="my-2"></div>
-          <div
-            id="div-gpt-ad-1704975923390-0"
-            style={{ minWidth: "336px", minHeight: "280px" }}
-          ></div>
-        </div>
+        <div className="absolute w-full h-full bg-black opacity-40 z-0" />
       )}
-    </div>
+      <div className="flex flex-col items-center w-full absolute top-[50px] md:top-1/4">
+        {isOpen && (
+          <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white z-10">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"
+            >
+              <X />
+              <span className="">Close Ad</span>
+            </button>
+            <div
+              id="div-gpt-ad-1705382679779-0"
+              style={{ minWidth: "336px", minHeight: "280px" }}
+            ></div>
+            <div className="my-2"></div>
+            <div
+              id="div-gpt-ad-1704975923390-0"
+              style={{ minWidth: "336px", minHeight: "280px" }}
+            ></div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

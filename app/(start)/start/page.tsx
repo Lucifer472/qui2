@@ -64,10 +64,26 @@ const starterPage = async () => {
     ),
   });
 
+  const PopAds = dynamic(() => import("@/components/ads/pop-ad"), {
+    ssr: false,
+    loading: () => (
+      <Box sx={{ width: 336, height: 304 }}>
+        <Skeleton
+          variant="rectangular"
+          width={336}
+          height={304}
+          animation="wave"
+          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
+        />
+      </Box>
+    ),
+  });
+
   const data = await getStarterQuestion();
 
   return (
-    <div className="flex items-center flex-col gap-y-2 h-full w-full py-2 px-4">
+    <div className="flex items-center flex-col gap-y-2 h-full relative w-full py-2 px-4">
+      <PopAds />
       <StarterAdTop />
       <div className="text-center text-white my-2">
         <h1 className={cn("text-white text-2xl mb-2", poppins.className)}>
