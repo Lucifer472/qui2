@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { handleFirst } from "@/actions/cookies";
 
 import QuestionPanel from "@/components/question/question-panel";
-import dynamic from "next/dynamic";
+import PopAds from "@/components/ads/pop-ad";
 
 interface quizProps {
   quiz: question[];
@@ -54,10 +54,6 @@ const Quiz = ({ quiz }: quizProps) => {
       setLock(false);
     }, 1000);
   };
-
-  const PopAds = dynamic(() => import("@/components/ads/pop-ad"), {
-    ssr: false,
-  });
 
   return (
     <>
