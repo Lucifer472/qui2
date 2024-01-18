@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { ClipLoader } from "react-spinners";
+
 import LoadScript from "@/lib/load-script";
 import { X } from "lucide-react";
 
@@ -9,6 +11,8 @@ const PopAds = () => {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const [loading1, setLoading1] = useState(true);
 
   window.googletag = window.googletag || { cmd: [] };
 
@@ -40,6 +44,13 @@ const PopAds = () => {
         if (sl2 !== null) sl2.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
+        googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
+          if (!evt.isEmpty) {
+            setIsOpen(false);
+          } else {
+            setLoading1(false);
+          }
+        });
         googletag.display("div-gpt-ad-1705382679779-0");
         googletag.display("div-gpt-ad-1704975923390-0");
       });
@@ -72,12 +83,20 @@ const PopAds = () => {
               className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"
             >
               <X />
-              <span className="">Close Ad</span>
+              <span>Close Ad</span>
             </button>
-            <div
-              id="div-gpt-ad-1705382679779-0"
-              style={{ minWidth: "336px", minHeight: "280px" }}
-            ></div>
+            {loading1 ? (
+              <ClipLoader
+                color="#0e0a5f"
+                size={60}
+                cssOverride={{ borderWidth: "10px" }}
+              />
+            ) : (
+              <div
+                id="div-gpt-ad-1705382679779-0"
+                style={{ minWidth: "336px", minHeight: "280px" }}
+              ></div>
+            )}
             <div className="my-2"></div>
             <div
               id="div-gpt-ad-1704975923390-0"
