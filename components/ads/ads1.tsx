@@ -50,20 +50,10 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   }, [pathname]);
 
   return (
-    <>
-      {loading1 ? (
-        <ClipLoader
-          color="#0e0a5f"
-          size={60}
-          cssOverride={{ borderWidth: "10px" }}
-        />
-      ) : (
-        <div
-          id="div-gpt-ad-1704975923390-0"
-          style={{ minWidth: "336px", minHeight: "280px" }}
-        ></div>
-      )}
-    </>
+    <div
+      id="div-gpt-ad-1704975923390-0"
+      style={{ minWidth: "336px", minHeight: "280px" }}
+    ></div>
   );
 };
 
