@@ -27,11 +27,11 @@ const PopAds = () => {
   return (
     <>
       {isOpen && (
-        <div className="absolute w-full h-full bg-black opacity-40 z-0" />
+        <div className="absolute w-full h-full bg-black opacity-40 z-50" />
       )}
       <div className="flex flex-col items-center w-full absolute top-[50px]">
         {isOpen && (
-          <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white z-10">
+          <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white z-[99999]">
             <button
               onClick={() => setIsOpen(false)}
               className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"

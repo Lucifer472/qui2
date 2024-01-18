@@ -27,7 +27,7 @@ const PopTopAd = () => {
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
+        googletag.pubads().addEventListener("slotRequested", (evt) => {
           if (evt.slot.getResponseInformation()) {
             setLoading1(true);
           } else {
