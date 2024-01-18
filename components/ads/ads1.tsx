@@ -28,7 +28,7 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
+        googletag.pubads().addEventListener("slotOnload", (evt) => {
           if (evt.slot.getResponseInformation()) {
             console.log(evt.slot.getResponseInformation());
             setLoading1(false);
@@ -54,11 +54,13 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         style={{ minWidth: "336px", minHeight: "280px" }}
       >
         {loading1 && (
-          <ClipLoader
-            color="#0e0a5f"
-            size={60}
-            cssOverride={{ borderWidth: "10px" }}
-          />
+          <div className="w-full h-full flex items-center justify-center">
+            <ClipLoader
+              color="#0e0a5f"
+              size={60}
+              cssOverride={{ borderWidth: "10px" }}
+            />
+          </div>
         )}
       </div>
     </>
