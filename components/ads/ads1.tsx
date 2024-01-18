@@ -29,9 +29,11 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         googletag.enableServices();
         googletag.display("div-gpt-ad-1704975923390-0");
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
-          if (evt.isEmpty) {
+          if (!evt.isEmpty) {
             console.log(evt.isEmpty);
             setIsOpen(false);
+          } else {
+            console.log("false");
           }
         });
       });

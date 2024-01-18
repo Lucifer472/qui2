@@ -29,7 +29,7 @@ const PopAds = () => {
   return (
     <>
       {loader && (
-        <div className="absolute w-full h-full flex items-center justify-center">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center z-[99999]">
           <ClipLoader
             color="#0e0a5f"
             size={60}
@@ -42,7 +42,7 @@ const PopAds = () => {
       )}
       <div className="flex flex-col items-center w-full absolute top-[50px]">
         {isOpen && (
-          <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white z-[99999]">
+          <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white z-[1000]">
             <button
               onClick={() => setIsOpen(false)}
               className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"
