@@ -7,7 +7,6 @@ import LoadScript from "@/lib/load-script";
 
 const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   const pathname = usePathname();
-  const [loading1, setLoading1] = useState(true);
 
   window.googletag = window.googletag || { cmd: [] };
 
@@ -28,15 +27,12 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.pubads().addEventListener("slotOnload", (evt) => {
-          if (evt.slot.getResponseInformation()) {
-            console.log(evt.slot.getResponseInformation());
-            setLoading1(false);
-          } else {
+        googletag.display("div-gpt-ad-1704975923390-0");
+        googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
+          if (evt.isEmpty) {
             setIsOpen(false);
           }
         });
-        googletag.display("div-gpt-ad-1704975923390-0");
       });
     });
     return () => {
@@ -54,17 +50,7 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
       <div
         id="div-gpt-ad-1704975923390-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-      >
-        {loading1 && (
-          <div className="w-full h-full flex items-center justify-center">
-            <ClipLoader
-              color="#0e0a5f"
-              size={60}
-              cssOverride={{ borderWidth: "10px" }}
-            />
-          </div>
-        )}
-      </div>
+      ></div>
     </>
   );
 };
