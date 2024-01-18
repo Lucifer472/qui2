@@ -2,74 +2,28 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import { ClipLoader } from "react-spinners";
-
-import LoadScript from "@/lib/load-script";
 import { X } from "lucide-react";
+import dynamic from "next/dynamic";
 
 const PopAds = () => {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [loading1, setLoading1] = useState(true);
-
-  window.googletag = window.googletag || { cmd: [] };
-
   useEffect(() => {
     if (pathname === "/start") {
       setIsOpen(true);
     }
-
-    let sl: googletag.Slot | null;
-    let sl2: googletag.Slot | null;
-    const loadAds = async () => {
-      LoadScript(() => {
-        console.log("Script Loaded");
-      });
-    };
-    loadAds().then(() => {
-      googletag.cmd.push(function () {
-        sl = googletag.defineSlot(
-          "/22850953890/FT_2",
-          [336, 280],
-          "div-gpt-ad-1704975698484-0"
-        );
-        sl2 = googletag.defineSlot(
-          "/22850953890/FT_9",
-          [336, 280],
-          "div-gpt-ad-1704975923390-0"
-        );
-        if (sl !== null) sl.addService(googletag.pubads());
-        if (sl2 !== null) sl2.addService(googletag.pubads());
-        googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-        googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
-          if (evt.isEmpty) {
-            setIsOpen(false);
-          } else {
-            setLoading1(false);
-          }
-        });
-        googletag.display("div-gpt-ad-1704975698484-0");
-        googletag.display("div-gpt-ad-1704975923390-0");
-      });
-    });
-    return () => {
-      // Clean up the ad slot when the component unmounts or pathname changes
-      if (googletag && sl !== null) {
-        googletag.cmd.push(function () {
-          googletag.destroySlots([sl as googletag.Slot]);
-        });
-      }
-      if (googletag && sl2 !== null) {
-        googletag.cmd.push(function () {
-          googletag.destroySlots([sl2 as googletag.Slot]);
-        });
-      }
-      setIsOpen(false);
-    };
   }, [pathname]);
+
+  const Ads1 = dynamic(() => import("./ads1"), {
+    ssr: false,
+  });
+
+  const Ads2 = dynamic(() => import("./ads2"), {
+    ssr: false,
+  });
+
   return (
     <>
       {isOpen && (
@@ -86,23 +40,9 @@ const PopAds = () => {
               <span>Close Ad</span>
             </button>
             <div className="flex items-center justify-center flex-col w-full h-full">
-              {loading1 ? (
-                <ClipLoader
-                  color="#0e0a5f"
-                  size={60}
-                  cssOverride={{ borderWidth: "10px" }}
-                />
-              ) : (
-                <div
-                  id="div-gpt-ad-1704975698484-0"
-                  style={{ minWidth: "336px", minHeight: "280px" }}
-                ></div>
-              )}
+              <Ads1 setIsOpen={setIsOpen} />
               <div className="my-2"></div>
-              <div
-                id="div-gpt-ad-1704975923390-0"
-                style={{ minWidth: "336px", minHeight: "280px" }}
-              ></div>
+              <Ads2 />
             </div>
           </div>
         )}
