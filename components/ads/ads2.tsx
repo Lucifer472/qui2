@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const PopTopAd = () => {
   const pathname = usePathname();
-  const [loading1, setLoading1] = useState(false);
+  const [loading1, setLoading1] = useState(true);
 
   window.googletag = window.googletag || { cmd: [] };
 
@@ -29,7 +29,7 @@ const PopTopAd = () => {
         googletag.enableServices();
         googletag.pubads().addEventListener("slotRequested", (evt) => {
           if (evt.slot.getResponseInformation()) {
-            setLoading1(true);
+            console.log(evt.slot.getResponseInformation());
           } else {
             setLoading1(false);
           }
@@ -53,7 +53,7 @@ const PopTopAd = () => {
       <div
         id="div-gpt-ad-1704975698484-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-        className={cn(loading1 ? "block" : "hidden")}
+        className={cn(loading1 ? "hidden" : "block")}
       ></div>
     </>
   );
