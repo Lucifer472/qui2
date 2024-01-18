@@ -26,11 +26,11 @@ const PopTopAd = () => {
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
-          if (evt.isEmpty) {
-            setLoading1(false);
-          } else {
+        googletag.pubads().addEventListener("slotResponseReceived", (evt) => {
+          if (evt.slot.getResponseInformation()) {
             setLoading1(true);
+          } else {
+            setLoading1(false);
           }
         });
         googletag.display("div-gpt-ad-1704975698484-0");

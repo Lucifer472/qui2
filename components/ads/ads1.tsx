@@ -32,8 +32,6 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
           if (evt.slot.getResponseInformation()) {
             console.log(evt.slot.getResponseInformation());
             setLoading1(false);
-          } else {
-            setIsOpen(false);
           }
         });
         googletag.display("div-gpt-ad-1704975923390-0");
