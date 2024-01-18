@@ -46,7 +46,7 @@ const PopTopAd = () => {
       }
       setLoading1(false);
     };
-  }, [pathname]);
+  }, [pathname, setLoading1]);
 
   return (
     <>

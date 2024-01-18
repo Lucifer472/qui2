@@ -43,7 +43,7 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
         });
       }
     };
-  }, [pathname]);
+  }, [pathname, setIsOpen]);
 
   return (
     <>
