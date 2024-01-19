@@ -1,20 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 
 import { X } from "lucide-react";
 
 const PopAds = () => {
-  const pathname = usePathname();
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (pathname === "/start") {
-      setIsOpen(true);
-    }
-  }, [pathname]);
+  const [isOpen, setIsOpen] = useState(true);
 
   const Ads1 = dynamic(() => import("./ads1"), {
     ssr: false,
