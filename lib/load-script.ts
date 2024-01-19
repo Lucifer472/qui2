@@ -5,12 +5,10 @@ const LoadScript = (callback: () => void) => {
     script.src = `https://securepubads.g.doubleclick.net/tag/js/gpt.js`;
     script.id = "googleAdSense";
     script.async = true;
-    addEventListener("DOMContentLoaded", () => {
-      document.head.appendChild(script);
-      script.onload = () => {
-        if (callback) callback();
-      };
-    });
+    document.head.appendChild(script);
+    script.onload = () => {
+      if (callback) callback();
+    };
   }
   if (existingScript && callback) callback();
 };
