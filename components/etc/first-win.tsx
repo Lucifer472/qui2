@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getSession } from "next-auth/react";
-import { addCoins } from "@/actions/coins";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
+import { addCoins, currentCoins } from "@/actions/coins";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,17 +16,18 @@ const poppins = Poppins({
 const FirtWinComp = () => {
   window.googletag = window.googletag || { cmd: [] };
 
-  const [isFirst, setIsFirst] = useState(true);
-  const [user, setUser] = useState<any>(null);
   const [btn, setBtn] = useState(false);
+
+  const [coins, setCoins] = useState(0);
+
   const router = useRouter();
 
   useEffect(() => {
-    getSession().then((res) => {
+    currentCoins().then((res) => {
       if (res) {
-        if (res.user) {
-          setUser(res.user);
-        }
+        if (typeof res === "number") return setCoins(res);
+        setCoins(parseInt(res));
+        return;
       }
     });
   }, []);
@@ -50,24 +50,9 @@ const FirtWinComp = () => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", () => {
-        if (isFirst) {
-          if (user) {
-            addCoins(100).then(() => {
-              router.push("/submit/home");
-            });
-          } else {
-            const s = sessionStorage.getItem("s");
-            if (s) {
-              const coins = parseInt(s);
-              if (!isNaN(coins)) {
-                const newAmount = coins + 100;
-                sessionStorage.setItem("s", newAmount.toString());
-                router.push("/submit/home");
-              }
-            }
-          }
-        }
-        setIsFirst(false);
+        addCoins(100).then(() => {
+          router.push("/submit/home");
+        });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", () => {
         googletag.destroySlots([rewardedSlot]);
@@ -80,11 +65,6 @@ const FirtWinComp = () => {
   if (sessionStorage.getItem("a") === null) {
     router.push("/");
   }
-  let coins: string | number | null = sessionStorage.getItem("s");
-  if (coins === null) {
-    router.push("/");
-  }
-  coins = parseInt(coins as string);
 
   return (
     <div className="flex flex-col items-center gap-y-2 p-2 bg-[#1f237e] rounded-lg min-w-[90%]">

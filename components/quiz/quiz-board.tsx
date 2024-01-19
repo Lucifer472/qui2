@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Poppins } from "next/font/google";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
@@ -10,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 import QuestionPanel from "@/components/question/question-panel";
 import GameOver from "./game-over";
-import { getSession } from "next-auth/react";
+
 import { addCoins, removeCoins } from "@/actions/coins";
 
 const poppins = Poppins({
@@ -34,10 +33,6 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
   const [lock, setLock] = useState(false);
 
   const [gameover, setGameOver] = useState(false);
-
-  const [user, setUser] = useState<any>(null);
-
-  const router = useRouter();
 
   const handleAnswerSelection = (selectedAnswer: number) => {
     setLock(true);
@@ -68,49 +63,17 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
   };
 
   useEffect(() => {
-    const setNewUser = async () => {
-      const user = await getSession();
-      if (user === null) return null;
-      setUser(user);
-      return user;
-    };
-
-    setNewUser().then((res) => {
-      if (!res) {
-        const s = sessionStorage.getItem("s");
-        if (s === null) return router.push("/");
-        const coins = parseInt(s) - 100;
-        if (coins < 0) {
-          // return router.push("/");
-          console.log("RE CHECKED");
-        } else {
-          sessionStorage.setItem("s", coins.toString());
-        }
-      } else {
-        removeCoins(100).then((res) => {
-          // if (!res) router.push("/");
-          console.log("RE CHECKED");
-        });
-      }
+    removeCoins(100).then(() => {
+      setTimeout(() => {
+        gameEnd();
+      }, 59000);
     });
-
-    setTimeout(() => {
-      gameEnd();
-    }, 59000);
   }, []);
 
   const gameEnd = () => {
-    if (!user) {
-      const s = sessionStorage.getItem("s");
-      if (s === null) return router.push("/");
-      const coins = parseInt(s) + score;
-      sessionStorage.setItem("s", coins.toString());
+    addCoins(100).then((res) => {
       setGameOver(true);
-    } else {
-      addCoins(100).then((res) => {
-        setGameOver(true);
-      });
-    }
+    });
   };
 
   if (gameover)

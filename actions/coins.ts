@@ -1,4 +1,6 @@
 "use server";
+import { cookies } from "next/headers";
+
 import { auth } from "@/auth";
 import { getCoins, setCoins } from "@/lib/coin";
 
@@ -8,8 +10,11 @@ export const currentCoins = async () => {
     user === null ||
     user.user === undefined ||
     typeof user.user.email !== "string"
-  )
-    return null;
+  ) {
+    const coins = cookies().get("coins");
+    if (coins === undefined) return null;
+    return coins.value;
+  }
 
   const coins = await getCoins(user.user.email);
   if (coins === null) return 0;
@@ -22,8 +27,16 @@ export const removeCoins = async (removeCoins: number) => {
     user === null ||
     user.user === undefined ||
     typeof user.user.email !== "string"
-  )
-    return null;
+  ) {
+    const current = await currentCoins();
+    if (current === null) return null;
+    const coin = parseInt(current as string);
+    if (isNaN(coin)) return null;
+    if (removeCoins > coin) return null;
+    const setupCoins = coin - removeCoins;
+    cookies().set("coins", setupCoins.toString());
+    return setupCoins;
+  }
   const coins = await getCoins(user.user.email);
   if (coins === null) return null;
   if (coins >= removeCoins) {
@@ -43,8 +56,18 @@ export const addCoins = async (addCoins: number) => {
     user === null ||
     user.user === undefined ||
     typeof user.user.email !== "string"
-  )
-    return null;
+  ) {
+    const current = await currentCoins();
+    if (current === null) {
+      cookies().set("coins", addCoins.toString());
+      return addCoins;
+    }
+    const coin = parseInt(current as string);
+    if (isNaN(coin)) return null;
+    const setupCoins = coin + addCoins;
+    cookies().set("coins", setupCoins.toString());
+    return setupCoins;
+  }
   const coins = await getCoins(user.user.email);
   if (coins === null) return null;
   const newCoins = coins + addCoins;

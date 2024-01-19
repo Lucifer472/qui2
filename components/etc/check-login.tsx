@@ -1,16 +1,23 @@
 "use client";
+import { useEffect } from "react";
 
 import { localToDb } from "@/actions/LocalToDb";
-import { useEffect } from "react";
+import { currentCoins } from "@/actions/coins";
 
 const CheckLogin = () => {
   useEffect(() => {
     const updateCoins = async () => {
-      const s = sessionStorage.getItem("s");
+      const s = await currentCoins();
       if (s === null) return;
-      const coins = parseInt(s);
-      if (isNaN(coins)) return;
-      await localToDb(coins);
+      if (s) {
+        if (typeof s === "number") {
+          await localToDb(s);
+          return;
+        }
+        const coins = parseInt(s);
+        if (isNaN(coins)) return;
+        await localToDb(coins);
+      }
     };
 
     updateCoins();

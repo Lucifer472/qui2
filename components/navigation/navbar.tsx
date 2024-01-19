@@ -23,21 +23,17 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleCoinsChange = async () => {
-      const userCoins = await currentCoins();
-      if (userCoins === null) {
-        const s = sessionStorage.getItem("s");
-        if (s === null) return 0;
-        const sCoins = parseInt(s);
-        if (isNaN(sCoins)) return 0;
-        return sCoins;
-      } else {
-        return userCoins;
+    currentCoins().then((res) => {
+      if (res) {
+        if (typeof res === "string") {
+          setCoins(parseInt(res));
+          return;
+        }
+        setCoins(res);
+        return;
       }
-    };
-
-    handleCoinsChange().then((res: number) => {
-      setCoins(res);
+      setCoins(0);
+      return;
     });
 
     setIsOpen(false);

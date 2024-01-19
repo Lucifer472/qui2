@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { getSession } from "next-auth/react";
-import { addCoins } from "@/actions/coins";
+import { useState } from "react";
 import { Poppins } from "next/font/google";
+import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
+
+import { addCoins } from "@/actions/coins";
 
 import { cn } from "@/lib/utils";
 
@@ -29,21 +30,9 @@ const GameOver = ({
   const rank = Math.floor(Math.random() * 20) + 1;
   window.googletag = window.googletag || { cmd: [] };
 
-  const [isFirst, setIsFirst] = useState(true);
-  const [user, setUser] = useState<any>(null);
   const [btn, setBtn] = useState(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    getSession().then((res) => {
-      if (res) {
-        if (res.user) {
-          setUser(res.user);
-        }
-      }
-    });
-  }, []);
 
   const handleRewardAds = () => {
     setBtn(true);
@@ -56,32 +45,15 @@ const GameOver = ({
       rewardedSlot.addService(googletag.pubads());
       googletag.enableServices();
       googletag.pubads().addEventListener("slotOnload", (evt) => {
-        if (evt.slot.getResponseInformation() === null) return router.push("/");
+        if (evt.slot.getResponseInformation() === null) return router.refresh();
       });
       googletag.pubads().addEventListener("rewardedSlotReady", (evt) => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", () => {
-        if (isFirst) {
-          if (user) {
-            addCoins(100).then((res) => {
-              if (res === null) return router.push("/");
-              if (res) return router.push("/");
-              return router.push("/");
-            });
-          } else {
-            const s = sessionStorage.getItem("s");
-            if (s) {
-              const coins = parseInt(s);
-              if (!isNaN(coins)) {
-                const newAmount = coins + 100;
-                sessionStorage.setItem("s", newAmount.toString());
-                router.push("/");
-              }
-            }
-          }
-        }
-        setIsFirst(false);
+        addCoins(100).then(() => {
+          router.refresh();
+        });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", () => {
         googletag.destroySlots([rewardedSlot]);

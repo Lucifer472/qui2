@@ -8,6 +8,7 @@ import { getStarterQuestion } from "@/lib/getQuestion";
 import { Box, Skeleton } from "@mui/material";
 
 import Loader from "@/components/etc/loader";
+import PopAds from "@/components/ads/pop-ad";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -52,21 +53,6 @@ const starterPage = async () => {
   });
 
   const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
-    ssr: false,
-    loading: () => (
-      <Box sx={{ width: 336, height: 304 }}>
-        <Skeleton
-          variant="rectangular"
-          width={336}
-          height={304}
-          animation="wave"
-          sx={{ backgroundColor: "rgba(255, 254, 254, 0.11)" }}
-        />
-      </Box>
-    ),
-  });
-
-  const PopAds = dynamic(() => import("@/components/ads/pop-ad"), {
     ssr: false,
     loading: () => (
       <Box sx={{ width: 336, height: 304 }}>

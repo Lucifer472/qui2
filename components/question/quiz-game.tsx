@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { handleFirst } from "@/actions/cookies";
 
 import QuestionPanel from "@/components/question/question-panel";
-import PopAds from "@/components/ads/pop-ad";
+import PopAds from "@/components/question/reward-ads";
+import { addCoins } from "@/actions/coins";
 
 interface quizProps {
   quiz: question[];
@@ -43,10 +44,11 @@ const Quiz = ({ quiz }: quizProps) => {
       setGreen(null);
       setRed(null);
       if (quiz.length - 1 <= currentQuestion) {
-        sessionStorage.setItem("s", score.toString());
         sessionStorage.setItem("a", "1");
-        handleFirst().then((res) => {
-          router.push("/submit");
+        addCoins(score).then(() => {
+          handleFirst().then((res) => {
+            router.push("/submit");
+          });
         });
       } else {
         setCurrentQuestion((prev) => prev + 1);

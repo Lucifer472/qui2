@@ -1,12 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
-import { addCoins, currentCoins } from "@/actions/coins";
+import { useState } from "react";
 import { Poppins } from "next/font/google";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import { X } from "lucide-react";
+
+import { addCoins, currentCoins } from "@/actions/coins";
 
 import { cn } from "@/lib/utils";
 
@@ -18,24 +18,11 @@ const poppins = Poppins({
 const QuizButtons = ({ id }: { id: number }) => {
   window.googletag = window.googletag || { cmd: [] };
 
-  const [isFirst, setIsFirst] = useState(true);
-  const [user, setUser] = useState<any>(null);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const [btn, setBtn] = useState(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    getSession().then((res) => {
-      if (res) {
-        if (res.user) {
-          setUser(res.user);
-        }
-      }
-    });
-  }, []);
 
   const handleRewardAds = () => {
     setBtn(true);
@@ -55,26 +42,9 @@ const QuizButtons = ({ id }: { id: number }) => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", () => {
-        if (isFirst) {
-          if (user) {
-            addCoins(100).then((res) => {
-              if (res === null) return console.log("Something Went Wrong");
-              if (res) return router.refresh();
-              return console.log("IT FAILED");
-            });
-          } else {
-            const s = sessionStorage.getItem("s");
-            if (s) {
-              const coins = parseInt(s);
-              if (!isNaN(coins)) {
-                const newAmount = coins + 100;
-                sessionStorage.setItem("s", newAmount.toString());
-                router.refresh();
-              }
-            }
-          }
-        }
-        setIsFirst(false);
+        addCoins(100).then((res) => {
+          router.refresh();
+        });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", () => {
         googletag.destroySlots([rewardedSlot]);
@@ -84,23 +54,22 @@ const QuizButtons = ({ id }: { id: number }) => {
   };
 
   const handleStart = () => {
-    if (user) {
-      currentCoins().then((res) => {
-        if (res) {
-          if (res > 99) return router.push("/submit/" + id);
-          else return router.push("/start");
+    currentCoins().then((res) => {
+      if (res) {
+        if (typeof res === "string") {
+          const coins = parseInt(res);
+          if (coins > 99) return router.push("/submit" + id);
+          setIsOpen(true);
+          return null;
+        } else {
+          if (res > 99) return router.push("/submit" + id);
+          setIsOpen(true);
+          return null;
         }
+      } else {
         return router.push("/start");
-      });
-    } else {
-      const s = sessionStorage.getItem("s");
-      if (s === null) return router.push("/start");
-      const coins = parseInt(s);
-
-      if (isNaN(coins)) return router.push("/start");
-      if (coins > 99) return router.push(`/submit/${id}`);
-      return setIsOpen(true);
-    }
+      }
+    });
   };
   return (
     <>
