@@ -58,11 +58,11 @@ const QuizButtons = ({ id }: { id: number }) => {
       if (res) {
         if (typeof res === "string") {
           const coins = parseInt(res);
-          if (coins > 99) return router.push("/submit" + id);
+          if (coins > 99) return router.push("/submit/" + id);
           setIsOpen(true);
           return null;
         } else {
-          if (res > 99) return router.push("/submit" + id);
+          if (res > 99) return router.push("/submit/" + id);
           setIsOpen(true);
           return null;
         }
