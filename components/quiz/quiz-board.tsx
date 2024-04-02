@@ -40,21 +40,21 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
       setGreen(selectedAnswer);
       setScore((prev) => prev + 100);
       setCorrectAns((prev) => prev + 1);
-      handleNextQuestion();
+      handleNextQuestion(selectedAnswer);
     } else {
       setRed(selectedAnswer);
       setGreen(data[currentQuestion].answer);
       setWrongAns((prev) => prev + 1);
-      handleNextQuestion();
+      handleNextQuestion(selectedAnswer);
     }
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = (selectedAnswer: number) => {
     setTimeout(() => {
       setGreen(null);
       setRed(null);
-      if (data.length - 1 <= currentQuestion) {
-        gameEnd();
+      if (data.length - 1 === currentQuestion) {
+        gameEnd(selectedAnswer);
       } else {
         setCurrentQuestion((prev) => prev + 1);
       }
@@ -65,13 +65,16 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
   useEffect(() => {
     removeCoins(100).then(() => {
       setTimeout(() => {
-        gameEnd();
+        gameEnd(undefined);
       }, 59000);
     });
   }, []);
 
-  const gameEnd = () => {
-    addCoins(100).then((res) => {
+  const gameEnd = (selectedAnswer: number | undefined) => {
+    const extra =
+      selectedAnswer === data[currentQuestion].answer ? score + 100 : score;
+
+    addCoins(extra).then((res) => {
       setGameOver(true);
     });
   };

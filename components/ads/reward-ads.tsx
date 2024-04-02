@@ -42,7 +42,7 @@ const RewardAdsPopUp = () => {
 
   return (
     <>
-      {isOpen && (
+      {/* {isOpen && (
         <div className="absolute w-full h-full top-0 left-0 z-20 bg-black opacity-40" />
       )}
       {isOpen && (
@@ -80,7 +80,7 @@ const RewardAdsPopUp = () => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };

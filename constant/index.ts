@@ -11,11 +11,9 @@ export const quizRules = [
 
 export const navLinks = [
   { icon: BarChart2, link: "/rules", label: "Contest Rules" },
-  { icon: Coins, link: "/", label: "Coins History" },
-  { icon: Book, link: "/", label: "Blogs" },
-  { icon: User, link: "/", label: "About Us" },
-  { icon: BookUser, link: "/", label: "Contact Us" },
-  { icon: Flag, link: "/", label: "Report an Issue" },
+  { icon: Book, link: "/terms", label: "Terms & Condition" },
+  { icon: User, link: "/privacy", label: "Privacy Policy" },
+  { icon: BookUser, link: "/contact", label: "Contact Us" },
 ];
 
 export const category: string[] = [

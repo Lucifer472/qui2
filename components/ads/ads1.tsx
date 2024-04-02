@@ -49,10 +49,10 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
 
   return (
     <>
-      <div
+      {/* <div
         id="div-gpt-ad-1704975923390-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-      ></div>
+      ></div> */}
     </>
   );
 };

@@ -20,9 +20,7 @@ export default function RootLayout({
 }) {
   const CheckStarterPage = dynamic(
     () => import("@/components/etc/check-start"),
-    {
-      ssr: false,
-    }
+    { ssr: false }
   );
   const CheckLogin = dynamic(() => import("@/components/etc/check-login"), {
     ssr: false,

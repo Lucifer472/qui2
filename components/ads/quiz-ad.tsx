@@ -38,11 +38,11 @@ const CategoryAds = () => {
   }, [pathname]);
   return (
     <div className="text-center text-white">
-      <span className="text-xs">SPONSORED</span>
+      {/* <span className="text-xs">SPONSORED</span>
       <div
         id="div-gpt-ad-1704975873986-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
-      ></div>
+      ></div> */}
     </div>
   );
 };

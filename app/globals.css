@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html,body,:root{
+html,
+body,
+:root {
   height: 100%;
 }
-body::after{
-  background: url('/images/bg_quiz.webp');
+body::after {
+  background: url("/images/bg_quiz.webp");
   content: "";
   position: absolute;
   z-index: 0;
@@ -14,11 +16,11 @@ body::after{
   height: 100%;
   top: 0;
   left: 0;
-  opacity: .05;
+  opacity: 0.05;
   min-height: 100vh;
 }
- 
-.bg-images::before{
+
+.bg-images::before {
   content: url("/images/funFactBg.png");
   height: 100px;
   width: 100px;
@@ -27,7 +29,7 @@ body::after{
   top: 1px;
   z-index: 1;
 }
-.bg-images::after{
+.bg-images::after {
   content: url("/images/funFactBg.png");
   height: 100px;
   width: 100px;
@@ -38,31 +40,31 @@ body::after{
   z-index: 1;
 }
 
-.animation-link::before{
+.animation-link::before {
   content: "";
   position: absolute;
   height: 100%;
   width: 22px;
-  background-color: hsla(0,0%,100%,.2);
+  background-color: hsla(0, 0%, 100%, 0.2);
   transform: skewX(-15deg);
-  opacity: .6;
+  opacity: 0.6;
   filter: blur(5px);
   top: 1px;
   animation: animation-link-left-right 1.8s ease infinite;
 }
 
 @keyframes animation-link-left-right {
-  0%{
+  0% {
     left: 10%;
-    opacity: .6;
+    opacity: 0.6;
   }
-  100%{
+  100% {
     left: 90%;
-    opacity: .4;
+    opacity: 0.4;
   }
 }
 
-.svg-circle{
+.svg-circle {
   stroke-dasharray: 163px;
   stroke-dashoffset: 0px;
   stroke-linecap: round;
@@ -88,68 +90,86 @@ body::after{
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
- 
+
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
- 
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
- 
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
- 
+
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
- 
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
- 
+
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
- 
+
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
- 
+
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
- 
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
- 
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
- 
+
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
- 
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .policy {
+    @apply text-[#d8d7ff] text-left flex flex-col items-start justify-start gap-y-2;
+  }
+
+  .policy h2,
+  .policy h3,
+  .policy h4 {
+    @apply text-2xl text-white text-left w-full;
+  }
+
+  .policy p {
+    @apply text-left w-full;
+  }
+
+  .policy ul {
+    @apply flex flex-col items-start gap-y-4 list-disc text-[#d8d7ff];
   }
 }

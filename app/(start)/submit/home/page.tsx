@@ -19,10 +19,7 @@ const SubmitHomePage = () => {
   return (
     <div className="flex flex-col items-center w-full gap-y-4 px-4 py-2">
       <StarterAdTop />
-      <Link
-        href={"/"}
-        className="flex flex-col w-full bg-[#1f237e] rounded-md relative"
-      >
+      <div className="flex flex-col w-full bg-[#1f237e] rounded-md relative">
         <div className="p-3 flex gap-x-2 items-center justify-evenly">
           <Link
             href={"/quiz/" + 5}
@@ -66,16 +63,17 @@ const SubmitHomePage = () => {
         </div>
         <div className="w-full h-[1px] bg-gray-300" />
         <div className="px-4 py-2 flex items-center justify-between w-full">
-          <div
+          <Link
+            href={"/"}
             className={cn(
               "px-6 py-2 bg-orange-500 text-white font-medium rounded-full text-2xl w-full text-center",
               poppins.className
             )}
           >
             PLAY
-          </div>
+          </Link>
         </div>
-      </Link>
+      </div>
       <Rules />
     </div>
   );

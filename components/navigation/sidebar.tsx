@@ -82,7 +82,7 @@ const Sidebar = ({
           </div>
         </div>
         <div className="w-full h-[1px] bg-white opacity-30" />
-        <div className="w-full h-full py-4 pl-6 flex flex-col items-start gap-y-4">
+        <div className="w-full h-full py-4 pl-6 flex flex-col items-start gap-y-8">
           <ul className="w-full flex flex-col items-start gap-y-4">
             {navLinks.map((l, index) => (
               <Navlinks

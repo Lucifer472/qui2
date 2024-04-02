@@ -51,12 +51,8 @@ export const removeCoins = async (removeCoins: number) => {
 };
 
 export const addCoins = async (addCoins: number) => {
-  const user = await auth();
-  if (
-    user === null ||
-    user.user === undefined ||
-    typeof user.user.email !== "string"
-  ) {
+  const session = await auth();
+  if (!session?.user || typeof session.user.email !== "string") {
     const current = await currentCoins();
     if (current === null) {
       cookies().set("coins", addCoins.toString());
@@ -68,11 +64,11 @@ export const addCoins = async (addCoins: number) => {
     cookies().set("coins", setupCoins.toString());
     return setupCoins;
   }
-  const coins = await getCoins(user.user.email);
+  const coins = await getCoins(session.user.email);
   if (coins === null) return null;
   const newCoins = coins + addCoins;
 
-  const isUpdated = await setCoins(user.user.email, newCoins);
+  const isUpdated = await setCoins(session.user.email, newCoins);
 
   return isUpdated;
 };

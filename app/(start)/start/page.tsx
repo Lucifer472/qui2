@@ -71,7 +71,7 @@ const starterPage = async () => {
 
   return (
     <div className="flex items-center flex-col gap-y-2 h-full relative w-full py-2 px-4">
-      <Loader />
+      {/* <Loader /> */}
       <PopAds />
       <StarterAdTop />
       <div className="text-center text-white my-2">

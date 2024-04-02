@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { handleFirst } from "@/actions/cookies";
 
 import QuestionPanel from "@/components/question/question-panel";
-import PopAds from "@/components/question/reward-ads";
+import PopAds from "@/components/ads/reward-ads";
 import { addCoins } from "@/actions/coins";
 
 interface quizProps {
@@ -31,21 +31,26 @@ const Quiz = ({ quiz }: quizProps) => {
     if (selectedAnswer === quiz[currentQuestion].answer) {
       setGreen(selectedAnswer);
       setScore((prev) => prev + 100);
-      handleNextQuestion();
+      handleNextQuestion(selectedAnswer);
     } else {
       setRed(selectedAnswer);
       setGreen(quiz[currentQuestion].answer);
-      handleNextQuestion();
+      handleNextQuestion(selectedAnswer);
     }
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = (selectedAnswer: number) => {
     setTimeout(() => {
       setGreen(null);
       setRed(null);
-      if (quiz.length - 1 <= currentQuestion) {
+      if (quiz.length - 1 === currentQuestion) {
+        const extra =
+          selectedAnswer === quiz[currentQuestion].answer
+            ? 100 + score
+            : 0 + score;
         sessionStorage.setItem("a", "1");
-        addCoins(score).then(() => {
+        console.log(extra);
+        addCoins(extra < 50 ? 100 : extra).then(() => {
           handleFirst().then((res) => {
             router.push("/submit");
           });

@@ -13,7 +13,7 @@ const PopAds = () => {
 
   return (
     <>
-      {isOpen && (
+      {/* {isOpen && (
         <div className="absolute w-full h-full bg-black opacity-40 z-50" />
       )}
       <div className="flex flex-col items-center w-full fixed top-[50px] z-[1000]">
@@ -31,7 +31,7 @@ const PopAds = () => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
