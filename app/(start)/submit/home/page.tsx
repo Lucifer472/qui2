@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import dynamic from "next/dynamic";
+import dynamic2 from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -9,11 +9,13 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
+export const dynamic = "force-static";
+
 const SubmitHomePage = () => {
-  const StarterAdTop = dynamic(() => import("@/components/ads/quiz-ad"), {
+  const StarterAdTop = dynamic2(() => import("@/components/ads/quiz-ad"), {
     ssr: false,
   });
-  const Rules = dynamic(() => import("@/components/etc/rules"), {
+  const Rules = dynamic2(() => import("@/components/etc/rules"), {
     ssr: true,
   });
   return (

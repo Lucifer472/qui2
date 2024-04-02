@@ -7,6 +7,8 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
+export const dynamic = "force-static";
+
 const PrivacyPolicyPage = () => {
   return (
     <div className="flex flex-col gap-y-2 items-center w-full p-6 policy">

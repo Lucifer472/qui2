@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import dynamic from "next/dynamic";
+import dynamic2 from "next/dynamic";
 
 import { cn } from "@/lib/utils";
 import { signIn } from "@/auth";
@@ -11,8 +11,10 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
+export const dynamic = "force-static";
+
 const LoginPage = () => {
-  const StarterAdTop = dynamic(() => import("@/components/ads/home-ad"), {
+  const StarterAdTop = dynamic2(() => import("@/components/ads/home-ad"), {
     ssr: false,
   });
   return (
