@@ -24,7 +24,7 @@ const BottomButtons = () => {
         <div className="absolute bg-black/50 top-0 left-0 w-full h-full z-[1]" />
       )}
       {isOpen && (
-        <div className="absolute z-10 bottom-0 left-0 w-full h-[50%] bg-[#282d93] rounded-t-3xl">
+        <div className="absolute z-10 bottom-0 left-0 w-full h-[50%] bg-[#31363F] rounded-t-3xl">
           <div className="w-full flex flex-col items-center gap-y-4 px-6 py-2">
             <div className="flex items-center justify-between w-full mt-4">
               <span className={cn("text-white text-xl", poppins.className)}>
@@ -129,7 +129,7 @@ const BottomButtons = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "w-full py-3 bg-[#1f237e] rounded-lg text-white text-lg",
+          "w-full py-3 bg-[#31363F] rounded-lg text-white text-lg",
           poppins.className
         )}
       >
@@ -138,7 +138,7 @@ const BottomButtons = () => {
       <button
         onClick={() => router.push("/rules")}
         className={cn(
-          "w-full py-3 bg-[#1f237e] rounded-lg text-white text-lg",
+          "w-full py-3 bg-[#31363F] rounded-lg text-white text-lg",
           poppins.className
         )}
       >

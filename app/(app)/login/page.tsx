@@ -11,8 +11,6 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
-export const dynamic = "force-static";
-
 const LoginPage = () => {
   const StarterAdTop = dynamic2(() => import("@/components/ads/home-ad"), {
     ssr: false,
@@ -24,7 +22,7 @@ const LoginPage = () => {
           "use server";
           await signIn("google");
         }}
-        className="flex items-center flex-col w-full gap-y-4 py-4 px-2 bg-[#282d93] text-white mx-auto my-4 max-w-[90%] rounded-lg"
+        className="flex items-center flex-col w-full gap-y-4 py-4 px-2 bg-[#31363F] text-white mx-auto my-4 max-w-[90%] rounded-lg"
       >
         <span className={cn("text-lg", poppins.className)}>
           Login now & Play Quiz
@@ -44,7 +42,7 @@ const LoginPage = () => {
         <p>
           Don’t have an account?
           <button
-            className={cn("text-orange-500 cursor-pointer", poppins.className)}
+            className={cn("text-[#76ABAE] cursor-pointer", poppins.className)}
           >
             Sign Up
           </button>

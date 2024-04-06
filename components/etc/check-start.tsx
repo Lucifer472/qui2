@@ -2,9 +2,19 @@
 
 import { useEffect } from "react";
 import LoadScript from "@/lib/load-script";
+import { addCoins, currentCoins } from "@/actions/coins";
+import { handleFirst } from "@/actions/cookies";
 
 const CheckStarterPage = () => {
   useEffect(() => {
+    currentCoins().then((res) => {
+      if (!res) {
+        addCoins(500).then(() => {
+          handleFirst();
+        });
+      }
+    });
+
     const loadScript = async () => {
       LoadScript(() => {
         console.log("Script Loaded");

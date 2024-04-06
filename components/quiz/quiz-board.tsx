@@ -104,7 +104,7 @@ const QuizBoard = ({ data }: QuizBoardProps) => {
           rotation={"counterclockwise"}
         >
           {({ remainingTime }) => (
-            <div className="text-white bg-[#282d93] w-[82%] h-[82%] border-4 border-[#090551] rounded-full flex items-center justify-center">
+            <div className="text-white bg-[#31363F] w-[82%] h-[82%] border-4 border-[#090551] rounded-full flex items-center justify-center">
               {remainingTime}
             </div>
           )}

@@ -40,7 +40,7 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
   }, [pathname]);
 
   return (
-    <header className="w-full h-16 flex items-center justify-between bg-gradient-to-b from-[#282d93] to-[#15136e] border-b border-white/30">
+    <header className="w-full h-16 flex items-center justify-between bg-gradient-to-b from-[#31363F] to-[#2c2e31] border-b border-white/30">
       {isOpen && (
         <div className="z-[1] bg-black opacity-60 h-full w-full absolute top-0 left-0" />
       )}
@@ -52,18 +52,19 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
           <Menu className="text-white h-8 w-8" />
         </button>
         <Link href={"/"}>
-          <Image
+          {/* <Image
             src={"/images/logo.webp"}
             alt="logo"
             width={140}
             height={140}
-          />
+          /> */}
+          <span className="text-lg font-bold text-white">FINTECH QUIZ</span>
         </Link>
       </div>
       <div className="flex items-center gap-x-1 pr-2">
         <Link
           href={"/"}
-          className="rounded-full bg-[#080456] p-1 h-10 w-20 flex items-center justify-center gap-x-1"
+          className="rounded-full bg-[#222831] p-1 h-10 w-20 flex items-center justify-center gap-x-1"
         >
           <Image
             src={"/images/coin-icon.png"}
@@ -78,7 +79,7 @@ const Navbar = ({ isLogged, name, image }: NavbarProps) => {
         </Link>
         <button
           onClick={async () => await Notification.requestPermission()}
-          className="p-2 rounded-full bg-[#080456] text-white"
+          className="p-2 rounded-full bg-[#222831] text-white"
         >
           <Bell />
         </button>

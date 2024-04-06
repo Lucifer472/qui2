@@ -32,11 +32,11 @@ const Sidebar = ({
   return (
     <div
       className={cn(
-        "h-full min-w-[280px] max-w-[380px] w-full absolute top-0 left-0 overflow-x-hidden z-20 bg-[#272c93]",
+        "h-full min-w-[280px] max-w-[380px] w-full absolute top-0 left-0 overflow-x-hidden z-20 bg-[#31363F]",
         isOpen ? "block" : "hidden"
       )}
     >
-      <div className="relative flex flex-col items-start w-full h-screen bg-[url('/images/tiger.png')] bg-no-repeat bg-[bottom_12px_right_12px]">
+      <div className="relative flex flex-col items-start w-full h-screen bg-no-repeat bg-[bottom_12px_right_12px]">
         <div className="flex gap-x-2 items-center w-full pb-4 pt-8 relative">
           <div className="flex items-center justify-center pl-6">
             <Image
@@ -56,7 +56,7 @@ const Sidebar = ({
               <button
                 onClick={async () => await actionLogout()}
                 className={cn(
-                  "max-w-[80px] min-w-[60px] w-full bg-orange-500 text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
+                  "max-w-[80px] min-w-[60px] w-full bg-[#76ABAE] text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
                   poppins.className
                 )}
               >
@@ -66,7 +66,7 @@ const Sidebar = ({
               <Link
                 href={"/login"}
                 className={cn(
-                  "max-w-[80px] min-w-[60px] w-full bg-orange-500 text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
+                  "max-w-[80px] min-w-[60px] w-full bg-[#76ABAE] text-center py-[2px] mt-2 rounded-full text-sm relative animation-link",
                   poppins.className
                 )}
               >

@@ -8,8 +8,6 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
-export const dynamic = "force-static";
-
 const RulePage = () => {
   const StarterAdTop = dynamic2(() => import("@/components/ads/home-ad"), {
     ssr: false,

@@ -76,7 +76,7 @@ const QuizButtons = ({ id }: { id: number }) => {
       {isOpen && (
         <>
           <div className="absolute w-full h-full bg-black/30 z-10"></div>
-          <div className="absolute w-[90%] h-96 rounded-3xl z-20 top-1/2 left-1/2 bg-[#282d93] transform -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute w-[90%] h-96 rounded-3xl z-20 top-1/2 left-1/2 bg-[#31363F] transform -translate-x-1/2 -translate-y-1/2">
             <div className="flex items-center flex-col gap-y-4 w-full">
               <div className="w-full flex justify-end p-4">
                 <X
@@ -92,7 +92,7 @@ const QuizButtons = ({ id }: { id: number }) => {
                 onClick={handleRewardAds}
                 disabled={btn}
                 className={cn(
-                  "w-[200px] py-3 bg-orange-500 rounded-full text-white text-xl relative animation-link",
+                  "w-[200px] py-3 bg-[#76ABAE] rounded-full text-white text-xl relative animation-link",
                   poppins.className
                 )}
               >
@@ -110,7 +110,7 @@ const QuizButtons = ({ id }: { id: number }) => {
           onClick={handleRewardAds}
           disabled={btn}
           className={cn(
-            "w-full py-3 bg-orange-500 rounded-lg text-white text-xl relative animation-link",
+            "w-full py-3 bg-[#76ABAE] rounded-lg text-white text-xl relative animation-link",
             poppins.className
           )}
         >
@@ -119,7 +119,7 @@ const QuizButtons = ({ id }: { id: number }) => {
         <button
           onClick={handleStart}
           className={cn(
-            "w-full py-3 bg-[#1f237e] rounded-lg text-white text-xl",
+            "w-full py-3 bg-[#31363F] rounded-lg text-white text-xl",
             poppins.className
           )}
         >

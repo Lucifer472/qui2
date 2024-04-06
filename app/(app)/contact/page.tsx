@@ -7,8 +7,6 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
-export const dynamic = "force-static";
-
 const ContactPage = () => {
   return (
     <div className="flex flex-col gap-y-2 items-start w-full p-6">

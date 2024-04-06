@@ -67,7 +67,7 @@ const FirtWinComp = () => {
   }
 
   return (
-    <div className="flex flex-col items-center gap-y-2 p-2 bg-[#1f237e] rounded-lg min-w-[90%]">
+    <div className="flex flex-col items-center gap-y-2 p-2 bg-[#31363F] rounded-lg min-w-[90%]">
       <Image src={"/gif/rewards.gif"} alt="Reward" width={180} height={180} />
       <span className="text-center text-white text-lg font-medium">
         You have got {coins} coins

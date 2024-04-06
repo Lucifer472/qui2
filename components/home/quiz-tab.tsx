@@ -25,7 +25,7 @@ const QuizTab = ({ img, id, category, name, isHome = false }: QuizTabProps) => {
   return (
     <Link
       href={isHome ? "/" : `/${encodeURI(category)}/${id}`}
-      className="flex flex-col w-full bg-[#1f237e] rounded-md relative"
+      className="flex flex-col w-full bg-[#31363F] rounded-md relative"
     >
       <div className="p-3 flex gap-x-2 items-center justify-start">
         <Image
@@ -69,7 +69,7 @@ const QuizTab = ({ img, id, category, name, isHome = false }: QuizTabProps) => {
           <span className="font-medium text-white">{randomUserNumber}</span>
           <span className="text-gray-300 text-xs">Users Playing</span>
         </div>
-        <div className="px-6 py-2 bg-orange-500 text-white font-medium rounded-full text-xs">
+        <div className="px-6 py-2 bg-[#76ABAE] text-white font-medium rounded-full text-xs">
           PLAY
         </div>
       </div>

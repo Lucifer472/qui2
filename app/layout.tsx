@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <CheckStarterPage />
-        <main className="max-w-[430px] mx-auto w-full min-h-full bg-[#0e0a5f] z-10 relative flex flex-col">
+        <main className="max-w-[430px] mx-auto w-full min-h-full bg-[#222831] z-10 relative flex flex-col">
           {children}
           <CheckLogin />
           <Footer />

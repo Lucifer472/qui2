@@ -64,7 +64,7 @@ const GameOver = ({
 
   return (
     <div className="flex flex-col items-center w-full gap-y-4 px-4">
-      <div className="flex flex-col w-full items-center gap-y-2 bg-[#282d93] pt-4 px-2 rounded-lg">
+      <div className="flex flex-col w-full items-center gap-y-2 bg-[#31363F] pt-4 px-2 rounded-lg">
         <Image src={"/trophy.png"} alt="Trophy" width={100} height={100} />
         <span className="text-gray-300 font-medium">
           Time is over! Well Played
@@ -119,7 +119,7 @@ const GameOver = ({
         <Link
           href={"/"}
           className={cn(
-            "w-full py-3 bg-orange-500 rounded-lg text-white text-lg text-center relative animation-link",
+            "w-full py-3 bg-[#76ABAE] rounded-lg text-white text-lg text-center relative animation-link",
             poppins.className
           )}
         >
@@ -129,7 +129,7 @@ const GameOver = ({
           disabled={btn}
           onClick={handleRewardAds}
           className={cn(
-            "w-full py-3 bg-[#1f237e] rounded-lg text-white text-lg relative animation-link",
+            "w-full py-3 bg-[#31363F] rounded-lg text-white text-lg relative animation-link",
             poppins.className
           )}
         >

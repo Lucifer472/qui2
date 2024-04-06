@@ -9,8 +9,6 @@ const poppins = Poppins({
   weight: ["600"],
 });
 
-export const dynamic = "force-static";
-
 const SubmitHomePage = () => {
   const StarterAdTop = dynamic2(() => import("@/components/ads/quiz-ad"), {
     ssr: false,
@@ -21,7 +19,7 @@ const SubmitHomePage = () => {
   return (
     <div className="flex flex-col items-center w-full gap-y-4 px-4 py-2">
       <StarterAdTop />
-      <div className="flex flex-col w-full bg-[#1f237e] rounded-md relative">
+      <div className="flex flex-col w-full bg-[#31363F] rounded-md relative">
         <div className="p-3 flex gap-x-2 items-center justify-evenly">
           <Link
             href={"/quiz/" + 5}
@@ -68,7 +66,7 @@ const SubmitHomePage = () => {
           <Link
             href={"/"}
             className={cn(
-              "px-6 py-2 bg-orange-500 text-white font-medium rounded-full text-2xl w-full text-center",
+              "px-6 py-2 bg-[#76ABAE] text-white font-medium rounded-full text-2xl w-full text-center",
               poppins.className
             )}
           >

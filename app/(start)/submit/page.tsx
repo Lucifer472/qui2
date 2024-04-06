@@ -1,8 +1,6 @@
 import dynamic2 from "next/dynamic";
 import Rules from "@/components/etc/rules";
 
-export const dynamic = "force-static";
-
 const SubmitPage = () => {
   const StartAdTop2 = dynamic2(() => import("@/components/ads/quiz-win"), {
     ssr: false,
