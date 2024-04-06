@@ -18,6 +18,7 @@ const homePage = async () => {
   const data = await getQuizAll();
 
   if (data.length < 0) return null;
+
   return (
     <div className="flex flex-col items-center justify-center gap-y-2 w-full">
       <StarterAdTop />

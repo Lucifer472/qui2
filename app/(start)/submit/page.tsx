@@ -1,5 +1,4 @@
 import dynamic2 from "next/dynamic";
-
 import Rules from "@/components/etc/rules";
 
 export const dynamic = "force-static";
