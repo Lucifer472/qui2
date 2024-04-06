@@ -7,7 +7,7 @@ export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
-  const cookie = req.cookies?.get("isFirst");
+  const cookie = req.cookies.get("isFirst")?.value;
   if (!cookie && req.nextUrl.pathname === "/") {
     return Response.redirect(new URL("/start", nextUrl));
   }
